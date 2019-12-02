@@ -1,0 +1,626 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction to Biocontainers &mdash; CyVerse Container Camp: Container Technology for Scientific Research 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cyverse.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Biocontainers in HPC" href="biocontainers_hpc.html" />
+    <link rel="prev" title="Distributed Computing with Makeflow and Work Queue" href="../container_scaling/containerscaling_dc.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CyVerse Container Camp: Container Technology for Scientific Research
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Container Camp Workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/main.html"><strong>Workshop Code of Conduct</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html"><strong>Pre-Workshop Setup</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/agenda.html"><strong>Agenda</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/about_cyverse.html"><strong>About CyVerse</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Workshop Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_docker.html"><strong>Training session in Docker</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_singularity.html"><strong>Training session in Singularity</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_containerscaling.html"><strong>Training session in scaling up your analysis using containers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_biocontainers.html"><strong>Training session in Biocontainers</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Atmosphere</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../atmosphere/boot.html"><strong>Booting an Atmosphere computer instance for your use!</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docker/dockerintro.html"><strong>Introduction to Docker</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/dockeradvanced.html"><strong>Advanced Docker</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Singularity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../singularity/singularityintro.html"><strong>Introduction to Singularity</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity/singularityadvanced.html"><strong>Advanced Singularity</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Deploying</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deploying_apps/de_docker.html"><strong>Deploying apps in Discovery Environment</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Container Scaling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_osg.html"><strong>OSG (Open Science Grid) Singularity Infrastructure</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_pegasus.html"><strong>Pegasus Workflows with Application Containers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_dc.html"><strong>Distributed Computing with Makeflow and Work Queue</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Biocontainers</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Introduction to Biocontainers</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#developing-biocontainers">Developing biocontainers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-based-biocontainers">1. Docker based Biocontainers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bioconda-based-biocontainers">2. Bioconda based Biocontainers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-biocontainers-registry">The BioContainers Registry</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="biocontainers_hpc.html"><strong>Biocontainers in HPC</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Useful Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_docker.html"><strong>Docker related resources</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_singularity.html"><strong>Singularity related resources</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_other.html"><strong>Other resources</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Instructions and Reporting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../instructions_reporting/instructors.html"><strong>For instructors!</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions_reporting/problems.html"><strong>Problems? Bugs? Questions?</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CyVerse Container Camp: Container Technology for Scientific Research</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Introduction to Biocontainers</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/biocontainer/biocontainers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction-to-biocontainers">
+<h1><strong>Introduction to Biocontainers</strong><a class="headerlink" href="#introduction-to-biocontainers" title="Permalink to this headline">¶</a></h1>
+<p>BioContainers is a community-driven project that provides the infrastructure and basic guidelines to create, manage and distribute Bioinformatics containers with special focus in Proteomics, Genomics, Transcriptomics and Metabolomics. BioContainers is based on the popular frameworks of Docker.</p>
+<p>BioContainers Goals:</p>
+<ul class="simple">
+<li>Provide a base specification and images to easily build and deploy new bioinformatics/proteomics software including the source and examples.</li>
+<li>Provide a series of containers ready to be used by the bioinformatics community (<a class="reference external" href="https://github.com/BioContainers/containers">https://github.com/BioContainers/containers</a>).</li>
+<li>Define a set of guidelines and specifications to build a standardized container that can be used in combination with other containers and bioinformatics tools.</li>
+<li>Define a complete infrastructure to develop, deploy and test new bioinformatics containers using continuous integration suites such as Travis Continuous Integration (<a class="reference external" href="https://travisci">https://travisci</a>. org/), Shippable (<a class="reference external" href="https://app.shippable.com/">https://app.shippable.com/</a>) or manually built solutions.</li>
+<li>Provide support and help to the bioinformatics community to deploy new containers for researchers that do not have bioinformatics support.</li>
+<li>Provide guidelines and help on how to create reproducible pipelines by defining, reusing and reporting specific container versions which will consistently produce the exact same result and always be available in the history of the container.</li>
+<li>Coordinate and integrate developers and bioinformaticians to produce best practice of documentation and software development.</li>
+</ul>
+<div class="section" id="developing-biocontainers">
+<h2>Developing biocontainers<a class="headerlink" href="#developing-biocontainers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="docker-based-biocontainers">
+<h3>1. Docker based Biocontainers<a class="headerlink" href="#docker-based-biocontainers" title="Permalink to this headline">¶</a></h3>
+<p>1.1 - How to Request a Biocontainer?</p>
+<p>Users can request a container by opening an issue in the <a class="reference external" href="http://github.com/BioContainers/containers/issues">containers repository</a></p>
+<p><a class="reference internal" href="../_images/biocontainer-3.png"><img alt="biocontainer-3" src="../_images/biocontainer-3.png" style="width: 750px; height: 700px;" /></a></p>
+<p>The issue should contains the name of the software, the url of the code or binary to be package and information about the software. When the containers is deployed and fully functional, the issue will be closed by the developer or the contributor to BioContainers.</p>
+<p>1.1.1 - Use a BioContainer</p>
+<p>When a container is deployed and the developer closes the issue in GitHub the user received a notification that the container is ready.</p>
+<p><a class="reference internal" href="../_images/biocontainer-4.png"><img alt="biocontainer-4" src="../_images/biocontainer-4.png" style="width: 750px; height: 700px;" /></a></p>
+<p><a class="reference internal" href="../_images/biocontainer-5.png"><img alt="biocontainer-5" src="../_images/biocontainer-5.png" style="width: 750px; height: 700px;" /></a></p>
+<p>The user can then use <cite>docker pull</cite> or <cite>docker run</cite> for the corresponding container from <cite>quay.io/biocontainers</cite>. For example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull quay.io/biocontainers/khmer:2.1.2--py36_0
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Reporting a problem with a container:
+If the user find a problem with a container an issue should be open in the container repository, the user should use the broken tag (see tags). Developers of the project will pick-up the issue and deploy a new version of the container. A message will be delivered when the containers has been fixed.</p>
+</div>
+<p>1.2 - Create a Dockerfile for Biocontainer</p>
+<p>If you are familiar with Docker (which you are by now!), then instead of requesting a biocontainer, you can create a Dockerfile and then submit the Dockerfile for biocontainer</p>
+<ul class="simple">
+<li>BioContainers dockerfile template</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please always follow the best practices and help pages using input and output files information.</p>
+</div>
+<p>Below is the complete example of a BioContainers Dockerfile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Base Image</span>
+FROM biocontainers/biocontainers:latest
+
+<span class="c1"># Metadata</span>
+LABEL base.image<span class="o">=</span><span class="s2">&quot;biocontainers:latest&quot;</span>
+LABEL <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;3&quot;</span>
+LABEL <span class="nv">software</span><span class="o">=</span><span class="s2">&quot;Comet&quot;</span>
+LABEL software.version<span class="o">=</span><span class="s2">&quot;2016012&quot;</span>
+LABEL <span class="nv">description</span><span class="o">=</span><span class="s2">&quot;an open source tandem mass spectrometry sequence database search tool&quot;</span>
+LABEL <span class="nv">website</span><span class="o">=</span><span class="s2">&quot;http://comet-ms.sourceforge.net/&quot;</span>
+LABEL <span class="nv">documentation</span><span class="o">=</span><span class="s2">&quot;http://comet-ms.sourceforge.net/parameters/parameters_2016010/&quot;</span>
+LABEL <span class="nv">license</span><span class="o">=</span><span class="s2">&quot;http://comet-ms.sourceforge.net/&quot;</span>
+LABEL <span class="nv">tags</span><span class="o">=</span><span class="s2">&quot;Proteomics&quot;</span>
+
+<span class="c1"># Maintainer</span>
+MAINTAINER Felipe da Veiga Leprevost &lt;felipe@leprevost.com.br&gt;
+
+USER biodocker
+
+RUN <span class="nv">ZIP</span><span class="o">=</span>comet_binaries_2016012.zip <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  wget https://github.com/BioDocker/software-archive/releases/download/Comet/<span class="nv">$ZIP</span> -O /tmp/<span class="nv">$ZIP</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  unzip /tmp/<span class="nv">$ZIP</span> -d /home/biodocker/bin/Comet/ <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  chmod -R <span class="m">755</span> /home/biodocker/bin/Comet/* <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  rm /tmp/<span class="nv">$ZIP</span>
+
+RUN mv /home/biodocker/bin/Comet/comet_binaries_2016012/comet.2016012.linux.exe /home/biodocker/bin/Comet/comet
+
+ENV PATH /home/biodocker/bin/Comet:<span class="nv">$PATH</span>
+
+WORKDIR /data/
+
+CMD <span class="o">[</span><span class="s2">&quot;comet&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>1.2.1 - Run it!, Test it! Once the container is ready you should test it, try to run your program using the run command, check if all its functionalities are in order.</p>
+<p>1.2.2 - Contribute if everything looks OK. You can contribute to the BioContainers project by sending your Dockerfile.</p>
+</div>
+<div class="section" id="bioconda-based-biocontainers">
+<h3>2. Bioconda based Biocontainers<a class="headerlink" href="#bioconda-based-biocontainers" title="Permalink to this headline">¶</a></h3>
+<p>In contrast to traditional Biocontainers, Bioconda based Biocontainers offers a very easy way to create efficient containers that are minimal in size, tested and not rely on writing a Dockerfile.</p>
+<p>The preferred way to do this is to write a conda package and submit this it the BioConda communtiy. As soon as your PR is merged and continues integration testing was successful, a container is built and publish it at <a class="reference external" href="https://quay.io/organization/biocontainers">quay.io</a>.</p>
+<p>In summary, a BioConda recipe should contain the following parts:</p>
+<ul class="simple">
+<li>Source URL is stable (details)</li>
+<li>md5 or sha256 hash included for source download (details)</li>
+<li>Appropriate build number (details)</li>
+<li>.bat file for Windows removed (details)</li>
+<li>Remove unnecessary comments (details)</li>
+<li>Adequate tests included</li>
+<li>Files created by the recipe follow the FSH (details)</li>
+<li>License allows redistribution and license is indicated in meta.yaml</li>
+<li>Package does not already exist in the defaults, r, or conda-forge channels with some exceptions (details)</li>
+<li>Package is appropriate for bioconda</li>
+<li>If the recipe installs custom wrapper scripts, usage notes should be added to extra -&gt; notes in the meta.yaml.</li>
+</ul>
+<p>Example Yaml for unicycler tool:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>package:
+  name: unicycler
+  version: <span class="m">0</span>.3.0b
+
+build:
+  number: <span class="m">0</span>
+  skip: True <span class="c1"># [py27]</span>
+
+source:
+  fn: unicycler_0.3.0b.tar.gz
+  url: https://github.com/rrwick/Unicycler/archive/906a3e7f314c7843bf0b4edf917593fc10baee4f.tar.gz
+  md5: 5f06d2bd8ef5065c8047421db8c7895f
+
+requirements:
+  build:
+  - python
+  - setuptools
+  - gcc
+
+  run:
+  - python
+  - libgcc
+  - spades &gt;<span class="o">=</span><span class="m">3</span>.6.2
+  - pilon
+  - java-jdk
+  - bowtie2
+  - samtools &gt;<span class="o">=</span><span class="m">1</span>.0
+  - blast
+  - freebayes
+
+test:
+  commands:
+    - unicycler -h
+    - unicycler_align -h
+    - unicycler_check -h
+    - unicycler_polish -h
+
+about:
+  home: https://github.com/rrwick/Unicycler
+  license: GPL-3.0
+  license_file: LICENSE
+  summary: <span class="s1">&#39;Hybrid assembly pipeline for bacterial genomes&#39;</span>
+</pre></div>
+</div>
+<p>When the recipe is ready a Pull Request should be created on the bioconda-recipes <a class="reference external" href="https://bioconda.github.io/contribute-a-recipe.html#push-changes-wait-for-tests-to-pass-submit-pull-request">github repo</a>. Finally the container is automatically created for the new BioConda Package if everything is corrected</p>
+<p>The following are the detailed steps involved in creating bioconda based biocontainers:</p>
+<p>2.1 - One-time Setup</p>
+<p>2.1.1 - Install Bioconda</p>
+<p>Bioconda is a channel for the conda package manager specializing in bioinformatics software. It consists of:</p>
+<ul class="simple">
+<li>A repository of recipes hosted on GitHub</li>
+<li>A build system that turns these recipes into conda packages</li>
+<li>A repository of &gt;1500 bioinformatics packages ready to use with a simple conda install command</li>
+</ul>
+<p>Over 130 contributors that add, modify, update and maintain the recipes</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last"><strong>Recipe vs package</strong>
+A <strong>recipe</strong> is a directory containing small set of files that defines name, version, dependencies, and URL for source code. A recipe
+typically contains a meta.yaml file that defines these settings and a build.sh script that builds the software. A recipe is
+converted into a package by running “conda-build” on the recipe.
+A <strong>package</strong> is a bgzipped tar file (.tar.bz2) that contains the built software. Packages are uploaded to anaconda.org so that users can install them with “conda install” command.</p>
+</div>
+<p>Bioconda requires the conda package manager to be installed. If you have an Anaconda Python installation, you already have it.
+Otherwise, the best way to install it is with the Miniconda package.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Bioconda supports only 64-bit Linux and Mac OSX. The Python 3 version is recommended.</p>
+</div>
+<p>Install miniconda specific for your platform. The following code shows the Miniconda installation on MacOSX and Linux</p>
+<ul class="simple">
+<li>MacOSX</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+bash Miniconda3-latest-MacOSX-x86_64.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li>Linux</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>Accept all the default settings and let conda prepend the PATH in <cite>~/.bashrc</cite></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
+<p>If you already have miniconda installed on your MacOSX/Linux, you can update that using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda upgrade conda
+conda upgrade conda-build
+</pre></div>
+</div>
+<p>2.1.2 - Setting up of Channels of Bioconda</p>
+<p>After installing conda you will need to add the Bioconda channel as well as the other channels Bioconda depends on. It is important to run the following commands in this order so that the priority is set correctly.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda config --add channels conda-forge
+conda config --add channels defaults
+conda config --add channels r
+conda config --add channels bioconda
+</pre></div>
+</div>
+<p>2.1.3 - Test Bioconda installation</p>
+<p>After installing Bioconda and setting-up channels, test to see if the installation of Bioconda worked properly by installing a package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install &lt;package&gt;
+
+<span class="c1"># Example</span>
+conda install bwa
+<span class="c1"># Or a specific version can be installed like this</span>
+conda install <span class="nv">bwa</span><span class="o">=</span><span class="m">0</span>.7.12
+</pre></div>
+</div>
+<p>If there are no errors during installation of <cite>bwa</cite>, your Bioconda set-up is complete</p>
+<p>2.1.4 - Next, create a fork of bioconda-recipes repo onto your GitHub account and then clone it locally.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Create a github account if you don’t have one already.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/&lt;githubUSERNAME&gt;/bioconda-recipes.git
+</pre></div>
+</div>
+<p>2.1.5 - Add the main bioconda-recipes repo as an upstream remote to more easily update your branch with the upstream master branch</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> bioconda-recipes
+git remote add upstream https://github.com/bioconda/bioconda-recipes.git
+</pre></div>
+</div>
+<p>2.1.6 - Request to be added to the Bioconda team</p>
+<p>While not required, you can be added to the Bioconda by posting in <a class="reference external" href="https://github.com/bioconda/bioconda-recipes/issues/1">Issue #1</a>. Members of the Bioconda team can merge their own recipes once tests pass, though we ask that first-time contributions and anything out of the ordinary be reviewed by the &#64;bioconda/core team.</p>
+<p>Even if you are a member of the Bioconda team with push access, using your own fork will allow testing of your recipes
+on <cite>travis-ci</cite> using your own account’s free resources without consuming resources allocated by travis-ci to the Bioconda
+group. This makes the tests go faster for everyone.</p>
+<p>Create the Tool’s Required Bioconda recipe (for generating Biocontainers)</p>
+<p>2.1.7 - Update Bioconda repo and requirements</p>
+<p>Before starting, it’s best to update your fork with any changes made recently to the upstream Bioconda repo. Assuming you’ve set up your fork as above:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
+git pull upstream master
+</pre></div>
+</div>
+<p>2.1.8 - Checkout a new branch</p>
+<p>Check out a new branch in your fork (here the branch is arbitrarily named my-recipe):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b my-recipe
+</pre></div>
+</div>
+<p>2.1.9 - Create the recipe</p>
+<p>Before you create a recipe, make sure to check that package exists for that recipe. If the package is already present, then you don’t need to create the recipe.
+There are couple of ways to check for the package</p>
+<ol class="arabic simple">
+<li>Search for the package name in <a class="reference external" href="http://bioconda.github.io/recipes.html">here</a></li>
+<li>Search for the package name on the command line</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda search &lt;package&gt; -c bioconda
+
+<span class="c1"># Example</span>
+conda search taco -c bioconda
+</pre></div>
+</div>
+<p>If the package of your interest, is not available, you can create the Bioconda recipe for the tool of your interest as below</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda skeleton &lt;source&gt; &lt;package&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Source: The source of the tool can be pypi, cran, bioconductor or cpan. Guidelines for <a class="reference external" href="https://bioconda.github.io/guidelines.html">Bioconda recipe</a>
+Package: The name of the package</p>
+</div>
+<p>If the tool is not available from any of the above sources, then you need to generate a Bioconda package from scratch.</p>
+<p>2.2.0 - Test it locally</p>
+<p>After creating your recipe (using one of the above methods), to make sure your recipe works, you need to test it locally. There are two options.</p>
+<p>2.2.1 - Quick test</p>
+<p>The quickest, but not necessarily most complete, is to run <cite>conda-build</cite> command directly</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install conda-build
+conda build ./&lt;package&gt;
+
+<span class="c1"># Example</span>
+conda build bowtie2/2.2.4
+</pre></div>
+</div>
+<p>2.2.2 - Push your changes to your fork on github repo</p>
+<p>Once your tests are successful, before pushing your changes to your fork on github, it is best to merge any changes that have happened recently on the upstream master branch. See sycncing a fork for details, or run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git fetch upstream
+</pre></div>
+</div>
+<p>syncs the fork’s master branch with upstream</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
+git merge upstream/master
+</pre></div>
+</div>
+<p>merges those changes into the recipe’s branch</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout my-recipe
+git merge master
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>push your changes to your fork on github
+git push origin my-recipe
+</pre></div>
+</div>
+<p>2.2.3 - Open a pull request on the bioconda-recipes repo</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If it’s your first recipe or the recipe is doing something non-standard, please ask <cite>&#64;bioconda/core</cite> for a review.</p>
+</div>
+<p>2.2.4 - Test the built bioconda package and Biocontainer</p>
+<p>After the pull request, travis-ci will again do the builds to make sure everthing works. When the pull request is merged with the master branch by Bioconda team, the package will be uploaded to anaconda.org and Biocontainers will be pushed to quay.io.</p>
+<p>2.2.5 - Testing the Bioconda package</p>
+<p>Once the Bioconda package is available on Anaconda and biocontainer is available on <cite>quay.io</cite>, it may be a good idea to test those in staging first, so that production jobs aren’t interrupted.</p>
+<p>2.2.5.1 - Install the built Bioconda package from Anaconda (optional but recommended)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n myenvironment my-package <span class="c1"># This is optional but it is always good to test this</span>
+</pre></div>
+</div>
+<p>This method will install the package in the <cite>/home/username/minconda3/envs/myenvironment/bin</cite></p>
+<p>2.2.5.2 - Testing the Biocontainer</p>
+<ul class="simple">
+<li>Pull your Biocontainer from quay.io of your new recipe (Mandatory)</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull quay.io/biocontainers/&lt;my-package&gt;:&lt;version-number&gt;--&lt;python-version&gt;_&lt;built-number&gt;
+</pre></div>
+</div>
+<p>Run the tool’s Biocontainer using the image:tag name, sample parameters, and inputs given in the tool request with a docker run command.</p>
+<p>If the tool crashes, or the output does not match the sample output, contact the Bioconda or the user who creates the Biocontainers.
+Clean up any data containers and dangling images created in testing with <cite>docker rm -v</cite> and <cite>docker rmi</cite> commands.
+This command will cleanup any ‘dangling’ images:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker rmi <span class="k">$(</span>docker images -f <span class="s1">&#39;dangling=true&#39;</span> -q<span class="k">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-biocontainers-registry">
+<h2>The BioContainers Registry<a class="headerlink" href="#the-biocontainers-registry" title="Permalink to this headline">¶</a></h2>
+<p>BioContainers Registry UI provides the interface to search, tag, and document a BioContainers across all the registries.</p>
+<p><a class="reference internal" href="../_images/biocontainer-1.png"><img alt="biocontainer-1" src="../_images/biocontainer-1.png" style="width: 750px; height: 700px;" /></a></p>
+<p>The users can search containers by using the search box</p>
+<p><a class="reference internal" href="../_images/biocontainer-2.png"><img alt="biocontainer-2" src="../_images/biocontainer-2.png" style="width: 750px; height: 700px;" /></a></p>
+<p>The containers registry allow the users to sort the containers by any of these properties:</p>
+<ul class="simple">
+<li>Container Name: Container Name</li>
+<li>Description: Description Provided by the developer of the container.</li>
+<li>Real Name: The corresponding registry + container name</li>
+<li>Last Modified: Last date where the container has been modified.</li>
+<li>Starred/Start: If the container has been starred in any of the repos.</li>
+<li>Popularity: How many times a container has been pull from a registry.</li>
+<li>Registry Link: the registry Link.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="biocontainers_hpc.html" class="btn btn-neutral float-right" title="Biocontainers in HPC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../container_scaling/containerscaling_dc.html" class="btn btn-neutral" title="Distributed Computing with Makeflow and Work Queue" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, CyVerse.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/jquery.tablesorter.min.js"></script>
+      <script type="text/javascript" src="../_static/cyverse.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

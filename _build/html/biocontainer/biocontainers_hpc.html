@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Biocontainers in HPC &mdash; CyVerse Container Camp: Container Technology for Scientific Research 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cyverse.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Docker related resources" href="../useful_resources/usefulresources_docker.html" />
+    <link rel="prev" title="Introduction to Biocontainers" href="biocontainers.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CyVerse Container Camp: Container Technology for Scientific Research
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Container Camp Workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/main.html"><strong>Workshop Code of Conduct</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html"><strong>Pre-Workshop Setup</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/agenda.html"><strong>Agenda</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/about_cyverse.html"><strong>About CyVerse</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Workshop Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_docker.html"><strong>Training session in Docker</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_singularity.html"><strong>Training session in Singularity</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_containerscaling.html"><strong>Training session in scaling up your analysis using containers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_biocontainers.html"><strong>Training session in Biocontainers</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Atmosphere</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../atmosphere/boot.html"><strong>Booting an Atmosphere computer instance for your use!</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docker/dockerintro.html"><strong>Introduction to Docker</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/dockeradvanced.html"><strong>Advanced Docker</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Singularity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../singularity/singularityintro.html"><strong>Introduction to Singularity</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity/singularityadvanced.html"><strong>Advanced Singularity</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Deploying</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deploying_apps/de_docker.html"><strong>Deploying apps in Discovery Environment</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Container Scaling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_osg.html"><strong>OSG (Open Science Grid) Singularity Infrastructure</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_pegasus.html"><strong>Pegasus Workflows with Application Containers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_dc.html"><strong>Distributed Computing with Makeflow and Work Queue</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Biocontainers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="biocontainers.html"><strong>Introduction to Biocontainers</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Biocontainers in HPC</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-thousands-of-apps-on-a-cluster">Installing thousands of apps on a cluster</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Useful Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_docker.html"><strong>Docker related resources</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_singularity.html"><strong>Singularity related resources</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_other.html"><strong>Other resources</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Instructions and Reporting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../instructions_reporting/instructors.html"><strong>For instructors!</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions_reporting/problems.html"><strong>Problems? Bugs? Questions?</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CyVerse Container Camp: Container Technology for Scientific Research</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Biocontainers in HPC</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/biocontainer/biocontainers_hpc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="biocontainers-in-hpc">
+<h1><strong>Biocontainers in HPC</strong><a class="headerlink" href="#biocontainers-in-hpc" title="Permalink to this headline">¶</a></h1>
+<p>On HPC systems, the traditional way to make software available is through the “modules” system.  The modules system allows administrators to install hundreds of scientific software packages on a system, including multiple versions of the same package, and then users can select the packages they want loaded into their environment.</p>
+<p>Adding a package into the modules system can take a lot of work.  At TACC, the process of adding a module looks something like this:</p>
+<ol class="arabic simple">
+<li>Manually install the software on the system as a test to figure out the best compiler optimizations, account for any dependencies, etc.</li>
+<li>Encode the installation process into an RPM file, add relevant metadata to the RPM, and craft a “modulefile” that lets the modules system discover the app.</li>
+<li>Build the RPM and put the compiled package in a designated location.</li>
+<li>Send a ticket to the administrators so that they can install the package during the next maintenance.</li>
+<li>System administrators install the package through a scripted process that installs the package on the local harddrive on every node on the system (often thousands of nodes)</li>
+<li>Next time users look for the package using the “modules” command, it will show up and be available for use.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">New systems are usually different enough from the old systems that RPM files must be altered manually every time, for every package.  TACC usually has 6-10 production systems that need scientific software RPMs. For examples of what goes into an RPM file, you can look in this <a class="reference external" href="https://github.com/TACC/lifesci_spec">Github repository</a></p>
+</div>
+<div class="section" id="installing-thousands-of-apps-on-a-cluster">
+<h2>Installing thousands of apps on a cluster<a class="headerlink" href="#installing-thousands-of-apps-on-a-cluster" title="Permalink to this headline">¶</a></h2>
+<p>As the BioContainers project has demonstrated, the Bioinformatics community alone uses thousands of software packages.  What can users of HPC systems do to gain access to the software they care about when the modules system cannot keep up?</p>
+<p>Bjorn Gruning from the University of Freiburg, along with many many collaborators from the BioContainers community has championed the inclusion of Singularity images from the BioContainers project.  This means that every app with a Conda recipe also has a Singularity image for it.  They are publicly available via FTP here: <a class="reference external" href="https://depot.galaxyproject.org/singularity/">https://depot.galaxyproject.org/singularity/</a></p>
+<p>They are also already available on every TACC system on the global work filesystem in this directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/work/projects/singularity/TACC/biocontainers/
+</pre></div>
+</div>
+<p>There are <strong>over 7200</strong> Singularity images currently available in that directory.  (So be careful trying to do an “ls” command there!</p>
+<p>All the images are named in the format: name_version.img.  They were converted from Docker containers using the docker2singularity script that adds top level directories (like “/work”) to make sure that volume mounts will work on the HPC systems.  If you use TACC, you can check for a software package, for example, bwa, like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ find /work/projects/singularity/TACC/biocontainers/ -name bwa*
+/work/projects/singularity/TACC/biocontainers/bwameth_0.20--py35_0.img
+/work/projects/singularity/TACC/biocontainers/bwa_0.5.9--0.img
+/work/projects/singularity/TACC/biocontainers/bwa_0.7.17--pl5.22.0_0.img
+/work/projects/singularity/TACC/biocontainers/bwameth_0.2.0--py36_1.img
+/work/projects/singularity/TACC/biocontainers/bwameth_0.2.0--py36_0.img
+/work/projects/singularity/TACC/biocontainers/bwa_0.7.13--1.img
+/work/projects/singularity/TACC/biocontainers/bwa_0.7.15--1.img
+/work/projects/singularity/TACC/biocontainers/bwa_0.7.16--pl5.22.0_0.img
+</pre></div>
+</div>
+<p>To test the image interactively (from a compute node!) you can do something like the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># get an interactive session</span>
+idev
+<span class="c1"># load the Singularity module</span>
+module load tacc-singularity
+<span class="c1"># explore the container</span>
+singularity shell /work/projects/singularity/TACC/biocontainers/bwa_0.7.15--1.img
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you run the container from your $WORK directory, Singularity will by default volume mount /work into the container, and all your $WORK files will be available.</p>
+</div>
+<p>From there, you are ready to incorporate “singularity exec” commands into your job submission scripts just like you would any other command.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../useful_resources/usefulresources_docker.html" class="btn btn-neutral float-right" title="Docker related resources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="biocontainers.html" class="btn btn-neutral" title="Introduction to Biocontainers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, CyVerse.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/jquery.tablesorter.min.js"></script>
+      <script type="text/javascript" src="../_static/cyverse.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

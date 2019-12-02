@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Starting Shiny App &mdash; Visual Interactive Computing Environment 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.tablesorter.min.js"></script>
+        <script type="text/javascript" src="../_static/cyverse.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cyverse.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sharing VICE apps with collaborators" href="sharing.html" />
+    <link rel="prev" title="Starting RStudio App" href="quick-rstudio.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Visual Interactive Computing Environment
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/about.html"><strong>About</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/prerequisites.html"><strong>Prerequisites</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/apptypes.html"><strong>Applications</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-jupyter.html"><strong>Starting JupyterLab App</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-rstudio.html"><strong>Starting RStudio App</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Starting Shiny App</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#find-your-rshiny-app">1. Find your Rshiny app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find-the-app-r-script">2. Find the <cite>app.R</cite> script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#log-in-to-cyverse-de">3. Log-in to CyVerse DE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-new-app-r-script-in-de">4. Create new <cite>app.R</cite> script in DE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search-rshiny-app">5. Search Rshiny app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#select-the-app-r-script">6. Select the <cite>app.R</cite> script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launch-rshiny-app">7. Launch Rshiny App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navigate-to-rshiny-url">8. Navigate to Rshiny url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cancel-your-analysis">9. Cancel your analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references-tutorials">References/Tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html"><strong>Sharing VICE apps with collaborators</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html#vice-share-7"></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/workflow.html"><strong>Workflow</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/adding.html"><strong>Guidelines for adding VICE tools in DE</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/building.html"><strong>Building VICE tools and apps</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">VICE Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vice_apps/examples.html">VICE Apps in DE</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html"><strong>Frequently Asked Questions</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/bestpractices.html"><strong>VICE Best practices</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/tool_troubleshooting.html"><strong>Tool Troubleshooting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/contact.html"><strong>Contact</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Visual Interactive Computing Environment</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Starting Shiny App</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/user_guide/quick-rshiny.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="http://learning.cyverse.org/"><img alt="CyVerse logo" src="../_images/cyverse_rgb4.png" style="width: 500px; height: 100px;" /></a></p>
+<p><a class="reference external" href="http://learning.cyverse.org/"><img alt="Home_Icon" src="../_images/homeicon4.png" style="width: 25px; height: 25px;" /></a>
+<a class="reference external" href="http://learning.cyverse.org/">Learning Center Home</a></p>
+<div class="section" id="starting-shiny-app">
+<h1><strong>Starting Shiny App</strong><a class="headerlink" href="#starting-shiny-app" title="Permalink to this headline">¶</a></h1>
+<p>Shiny is an R-based web application for interactive data analysis, exploration and visualization. It was built to execute R code dynamically based on user input. Since most JavaScript code is autogenerated by the environment, basic R scripting knowledge is sufficient for Shiny apps.</p>
+<p>For running a Shiny App in CyVerse Discovery Environment, you need <cite>app.R</cite> script/file. The following are steps for running an example Rshiny App (<cite>mpg</cite>) that is available on the Rstudio site within the Discovery Environment.</p>
+<div class="section" id="find-your-rshiny-app">
+<h2>1. Find your Rshiny app<a class="headerlink" href="#find-your-rshiny-app" title="Permalink to this headline">¶</a></h2>
+<p>Navigate to <a class="reference external" href="https://github.com/rstudio/shiny-examples">Rstudio github</a> to find the Rshiny app that you are interested in. Here is an example of one such Rshiny app that we will be using to run in the DE.</p>
+<p><a class="reference internal" href="../_images/shiny1-1.png"><img alt="shiny1-1" src="../_images/shiny1-1.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="find-the-app-r-script">
+<h2>2. Find the <cite>app.R</cite> script<a class="headerlink" href="#find-the-app-r-script" title="Permalink to this headline">¶</a></h2>
+<p>Inside the folder for <cite>mpg</cite> you will find the <cite>app.R</cite> file. Click on the <cite>Raw</cite> button and then copy the contents of the <cite>app.R</cite> file</p>
+<p><a class="reference internal" href="../_images/shiny1-2.png"><img alt="shiny1-2" src="../_images/shiny1-2.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="log-in-to-cyverse-de">
+<h2>3. Log-in to CyVerse DE<a class="headerlink" href="#log-in-to-cyverse-de" title="Permalink to this headline">¶</a></h2>
+<p>Next, login to <a class="reference external" href="http://de.cyverse.org">CyVerse DE</a>. Click on the <cite>Data</cite> window and create a folder <cite>rshiny-mpg</cite> specific for the app</p>
+<p><a class="reference internal" href="../_images/shiny1-3.png"><img alt="shiny1-3" src="../_images/shiny1-3.png" style="width: 700px; height: 400px;" /></a></p>
+<p><a class="reference internal" href="../_images/shiny1-4.png"><img alt="shiny1-4" src="../_images/shiny1-4.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="create-new-app-r-script-in-de">
+<h2>4. Create new <cite>app.R</cite> script in DE<a class="headerlink" href="#create-new-app-r-script-in-de" title="Permalink to this headline">¶</a></h2>
+<p>Under File menu, click the New R Script <cite>app.R</cite>, paste the contents and name it as <cite>app.R</cite></p>
+<p><a class="reference internal" href="../_images/shiny1-5.png"><img alt="shiny1-5" src="../_images/shiny1-5.png" style="width: 700px; height: 400px;" /></a></p>
+<p><a class="reference internal" href="../_images/shiny1-6.png"><img alt="shiny1-6" src="../_images/shiny1-6.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="search-rshiny-app">
+<h2>5. Search Rshiny app<a class="headerlink" href="#search-rshiny-app" title="Permalink to this headline">¶</a></h2>
+<p>The Rshiny app can be launched by first searching for <cite>Rshiny</cite> app in the search bar in the Apps window</p>
+<p><a class="reference internal" href="../_images/shiny1-7.png"><img alt="shiny1-7" src="../_images/shiny1-7.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="select-the-app-r-script">
+<h2>6. Select the <cite>app.R</cite> script<a class="headerlink" href="#select-the-app-r-script" title="Permalink to this headline">¶</a></h2>
+<p>Under Input files of the app, click the “add” button and then select the <cite>app.R</cite> file that you created earlier</p>
+<p><a class="reference internal" href="../_images/shiny1-8.png"><img alt="shiny1-8" src="../_images/shiny1-8.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="launch-rshiny-app">
+<h2>7. Launch Rshiny App<a class="headerlink" href="#launch-rshiny-app" title="Permalink to this headline">¶</a></h2>
+<p>After you select the <cite>app.R</cite> file, launch the Rshiny app by clicking launch analysis</p>
+<p><a class="reference internal" href="../_images/shiny1-9.png"><img alt="shiny1-9" src="../_images/shiny1-9.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="navigate-to-rshiny-url">
+<h2>8. Navigate to Rshiny url<a class="headerlink" href="#navigate-to-rshiny-url" title="Permalink to this headline">¶</a></h2>
+<p>After the analysis starts running, click on the “Access your running Analysis here url”</p>
+<p><a class="reference internal" href="../_images/shiny1-10.png"><img alt="shiny1-10" src="../_images/shiny1-10.png" style="width: 700px; height: 400px;" /></a></p>
+<p><a class="reference internal" href="../_images/shiny1-11.png"><img alt="shiny1-11" src="../_images/shiny1-11.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="cancel-your-analysis">
+<h2>9. Cancel your analysis<a class="headerlink" href="#cancel-your-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Cancel your analysis by clicking the Analysis window, then select the Rshiny analysis and click Cancel Analysis option under “Analyses” button</p>
+<p><a class="reference internal" href="../_images/shiny1-12.png"><img alt="shiny1-12" src="../_images/shiny1-12.png" style="width: 700px; height: 400px;" /></a></p>
+<p><a class="reference internal" href="../_images/shiny1-13.png"><img alt="shiny1-13" src="../_images/shiny1-13.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="references-tutorials">
+<h2>References/Tutorials<a class="headerlink" href="#references-tutorials" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Tutorial for those new to Shiny - <a class="reference external" href="https://bims.fun/r-shiny.html#fn1">https://bims.fun/r-shiny.html#fn1</a></p></li>
+<li><p>Collection of posts covering the basics of layout, reactivity and extensions for Shiny - <a class="reference external" href="https://bims.fun/r-shiny.html#fn2">https://bims.fun/r-shiny.html#fn2</a></p></li>
+<li><p>RStudio ‘cheatsheet’ for Shiny - <a class="reference external" href="https://bims.fun/r-shiny.html#fn3">https://bims.fun/r-shiny.html#fn3</a></p></li>
+<li><p>R-Bloggers articles featuring Shiny apps - <a class="reference external" href="https://bims.fun/r-shiny.html#fn4">https://bims.fun/r-shiny.html#fn4</a></p></li>
+<li><p>RStudio webinar slides for getting started with Shiny - <a class="reference external" href="https://bims.fun/r-shiny.html#fn5">https://bims.fun/r-shiny.html#fn5</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Fix or improve this documentation:</strong></p>
+<ul class="simple">
+<li><p>On Github: <a class="reference external" href="https://github.com/CyVerse-learning-materials/sciapps_guide">Repo link</a></p></li>
+<li><p>Send feedback: <a class="reference external" href="mailto:Tutorials&#37;&#52;&#48;CyVerse&#46;org">Tutorials<span>&#64;</span>CyVerse<span>&#46;</span>org</a></p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><p><a class="reference external" href="http://learning.cyverse.org/"><img alt="Home_Icon" src="../_images/homeicon4.png" style="width: 25px; height: 25px;" /></a>
+<a class="reference external" href="http://learning.cyverse.org/">Learning Center Home</a></p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sharing.html" class="btn btn-neutral float-right" title="Sharing VICE apps with collaborators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quick-rstudio.html" class="btn btn-neutral float-left" title="Starting RStudio App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, CyVerse
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

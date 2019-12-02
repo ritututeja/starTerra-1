@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Applications &mdash; Visual Interactive Computing Environment 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.tablesorter.min.js"></script>
+        <script type="text/javascript" src="../_static/cyverse.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cyverse.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Starting JupyterLab App" href="../user_guide/quick-jupyter.html" />
+    <link rel="prev" title="Prerequisites" href="prerequisites.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Visual Interactive Computing Environment
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html"><strong>About</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html"><strong>Prerequisites</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Applications</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-jupyterlab">1. What is JupyterLab?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-a-jupyter-notebook">1.1 What is a Jupyter Notebook?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jupyterlab-vice">1.2 JupyterLab VICE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-rstudio">2. What is RStudio?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rstudio-vice">2.1 Rstudio VICE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-shiny">3. What is Shiny?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#shiny-vice">3.1 Shiny VICE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-ubuntu-desktop">4. What is Ubuntu Desktop?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ubuntu-desktop-vice">4.1 Ubuntu Desktop VICE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quick-jupyter.html"><strong>Starting JupyterLab App</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quick-rstudio.html"><strong>Starting RStudio App</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quick-rshiny.html"><strong>Starting Shiny App</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/sharing.html"><strong>Sharing VICE apps with collaborators</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/sharing.html#vice-share-7"></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/workflow.html"><strong>Workflow</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/adding.html"><strong>Guidelines for adding VICE tools in DE</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/building.html"><strong>Building VICE tools and apps</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">VICE Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vice_apps/examples.html">VICE Apps in DE</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html"><strong>Frequently Asked Questions</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/bestpractices.html"><strong>VICE Best practices</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/tool_troubleshooting.html"><strong>Tool Troubleshooting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/contact.html"><strong>Contact</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Visual Interactive Computing Environment</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Applications</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/getting_started/apptypes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="http://learning.cyverse.org/"><img alt="CyVerse logo" src="../_images/cyverse_rgb3.png" style="width: 500px; height: 100px;" /></a></p>
+<p><a class="reference external" href="http://learning.cyverse.org/"><img alt="Home_Icon" src="../_images/homeicon3.png" style="width: 25px; height: 25px;" /></a>
+<a class="reference external" href="http://learning.cyverse.org/">Learning Center Home</a></p>
+<div class="section" id="applications">
+<h1><strong>Applications</strong><a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h1>
+<p>Currently, VICE apps are categorized broadly into three different spaces:</p>
+<ol class="arabic simple">
+<li><p>Integrated Development Environments (Jupyter Lab and RStudio)</p></li>
+<li><p>Interactive apps (Shiny)</p></li>
+<li><p>Virtual Desktops (VNC, Apache Guacamole)</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the future, there will be support for many different types of VICE apps.</p>
+</div>
+<p>Each of these spaces serves a different data science purpose. For example..</p>
+<ul class="simple">
+<li><p>If you are interested in writing Python, Julia, Spark, C++ based data analysis or visualization, Jupyter is most appropriate.</p></li>
+<li><p>If you are interested in creating analyses written in R, RStudio would be more appropriate.</p></li>
+<li><p>If you have a pre-built analysis such as Shiny built in R, Shiny is used.</p></li>
+<li><p>If you want to work in other Linux-based software, you can launch a virtual deskop using VNC or Apache Guacamole, and work with your tools there.</p></li>
+</ul>
+<div class="section" id="what-is-jupyterlab">
+<h2>1. What is JupyterLab?<a class="headerlink" href="#what-is-jupyterlab" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/index.html">JupyterLab</a> is an interactive development environment for working with notebooks, code and data. Most importantly, JupyterLab has full support for Jupyter Notebooks. Additionally, JupyterLab enables you to use text editors, terminals, data file viewers, and other custom components side-by-side with notebooks in a tabbed work area. JupyterLab provides a high level of integration between notebooks, documents, and activities:</p>
+<ul class="simple">
+<li><p>Drag-and-drop to reorder notebook cells and copy them between notebooks.</p></li>
+<li><p>Run code blocks interactively from text files (.py, .R, .md, .tex, etc.).</p></li>
+<li><p>Link a code console to a notebook kernel to explore code interactively without cluttering up the notebook with temporary scratch work.</p></li>
+<li><p>Edit popular file formats with live preview, such as Markdown, JSON, CSV, Vega, VegaLite, and more.</p></li>
+</ul>
+<div class="section" id="what-is-a-jupyter-notebook">
+<h3>1.1 What is a Jupyter Notebook?<a class="headerlink" href="#what-is-a-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://jupyter.readthedocs.io/en/latest/">Jupyter Notebook</a> (formerly IPython Notebook) is Project Jupyter’s flagship project for creating reproducible computational narratives. It enables users to create and share documents that combine live code with narrative text, mathematical equations, visualizations, interactive controls, and other rich output. It also provides building blocks for interactive computing with data: a file browser, terminals, and a text editor. Notebook documents (or “notebooks”) are documents produced by the Jupyter Notebook App, which contains both computer code (e.g., python, r, julia) and rich text elements (paragraph, equations, figures, comments, images, links, etc.).</p>
+</div>
+<div class="section" id="jupyterlab-vice">
+<h3>1.2 JupyterLab VICE<a class="headerlink" href="#jupyterlab-vice" title="Permalink to this headline">¶</a></h3>
+<p>The JupyterLab VICE app is integrated into the DE which includes Jupyter Notebook text editors, terminals, data file viewers, irods plugin and other custom components. Click here to do a quick launch of JupyterLab VICE app in the DE.</p>
+</div>
+</div>
+<div class="section" id="what-is-rstudio">
+<h2>2. What is RStudio?<a class="headerlink" href="#what-is-rstudio" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.rstudio.com/">RStudio</a> is a free and open source integrated development environment for R, a programming language for statistical computing and graphics. Some of its features include:</p>
+<ul class="simple">
+<li><p>Customizable workbench with all of the tools required to work with R in one place (console, source, plots, workspace, help, history, etc.).</p></li>
+<li><p>Syntax highlighting editor with code completion.</p></li>
+<li><p>Execute code directly from the source editor (line, selection, or file).</p></li>
+<li><p>Full support for authoring Sweave and TeX documents.</p></li>
+<li><p>Runs on all major platforms (Windows, Mac, and Linux) and can also be run as a server, enabling multiple users to access the RStudio IDE using a web browser.</p></li>
+</ul>
+<div class="section" id="rstudio-vice">
+<h3>2.1 Rstudio VICE<a class="headerlink" href="#rstudio-vice" title="Permalink to this headline">¶</a></h3>
+<p>The Rstudio VICE app is integrated into the DE. Click here to do a quick launch of Rstudio VICE app in the DE.</p>
+</div>
+</div>
+<div class="section" id="what-is-shiny">
+<h2>3. What is Shiny?<a class="headerlink" href="#what-is-shiny" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://shiny.rstudio.com/">Shiny</a> is an open source R package that provides an elegant and powerful web framework for building web applications using R. Shiny helps you turn your analyses into interactive web applications without requiring HTML, CSS, or JavaScript knowledge. Some of its features include:</p>
+<ul class="simple">
+<li><p>Build useful web applications with only a few lines of code—no JavaScript required.</p></li>
+<li><p>Shiny applications are automatically “live” in the same way that spreadsheets are live. Outputs change instantly as users modify inputs, without requiring you to reload your browser.</p></li>
+<li><p>Shiny user interfaces can be built entirely using R, or can be written directly in HTML, CSS, and JavaScript for more flexibility.</p></li>
+<li><p>Works in any R environment (Console R, Rgui for Windows or Mac, ESS, StatET, RStudio, etc.).</p></li>
+<li><p>Attractive default UI theme based on Twitter Bootstrap.</p></li>
+<li><p>A highly customizable slider widget with built-in support for animation.</p></li>
+<li><p>Pre-built output widgets for displaying plots, tables, and printed output of R objects.</p></li>
+<li><p>Fast bidirectional communication between the web browser and R using the websockets package.</p></li>
+<li><p>Uses a reactive programming model that eliminates messy event handling code, so you can focus on the code that really matters.</p></li>
+<li><p>Develop and redistribute your own Shiny widgets that other developers can easily drop into their own applications (coming soon!).</p></li>
+</ul>
+<div class="section" id="shiny-vice">
+<h3>3.1 Shiny VICE<a class="headerlink" href="#shiny-vice" title="Permalink to this headline">¶</a></h3>
+<p>The Shiny VICE app is integrated into the DE. Click here to do a quick launch of Shiny VICE app in the DE.</p>
+</div>
+</div>
+<div class="section" id="what-is-ubuntu-desktop">
+<h2>4. What is Ubuntu Desktop?<a class="headerlink" href="#what-is-ubuntu-desktop" title="Permalink to this headline">¶</a></h2>
+<p>The Ubuntu Desktop has a full Guacamole installation and Ubuntu XFCE desktop. This allows users to have a simple all-in-one desktop through their web browser. Users can run any interactive or visualization tool that can run on the most recent linux distros. Solutions to support the inevitable array of linux applications that user will want. Potential options include:</p>
+<ul class="simple">
+<li><p>Separate image per application</p></li>
+<li><p>Network fs (e.g. NFS, Ceph, etc) containing all applications</p></li>
+<li><p>Per-application network fs</p></li>
+<li><p>On-demand installation of application via script/ansible</p></li>
+</ul>
+<div class="section" id="ubuntu-desktop-vice">
+<h3>4.1 Ubuntu Desktop VICE<a class="headerlink" href="#ubuntu-desktop-vice" title="Permalink to this headline">¶</a></h3>
+<p>Ubuntu Desktop VICE app is integrated into the DE. Click here to do a quick launch of Linux Desktop VICE app in the DE.</p>
+<hr class="docutils" />
+<p><strong>Fix or improve this documentation:</strong></p>
+<ul class="simple">
+<li><p>On Github: <a class="reference external" href="https://github.com/CyVerse-learning-materials/sciapps_guide">Repo link</a></p></li>
+<li><p>Send feedback: <a class="reference external" href="mailto:Tutorials&#37;&#52;&#48;CyVerse&#46;org">Tutorials<span>&#64;</span>CyVerse<span>&#46;</span>org</a></p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><p><a class="reference external" href="http://learning.cyverse.org/"><img alt="Home_Icon" src="../_images/homeicon3.png" style="width: 25px; height: 25px;" /></a>
+<a class="reference external" href="http://learning.cyverse.org/">Learning Center Home</a></p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../user_guide/quick-jupyter.html" class="btn btn-neutral float-right" title="Starting JupyterLab App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prerequisites.html" class="btn btn-neutral float-left" title="Prerequisites" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, CyVerse
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

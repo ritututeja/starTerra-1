@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Deploying apps in Discovery Environment &mdash; CyVerse Container Camp: Container Technology for Scientific Research 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cyverse.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OSG (Open Science Grid) Singularity Infrastructure" href="../container_scaling/containerscaling_osg.html" />
+    <link rel="prev" title="Advanced Singularity" href="../singularity/singularityadvanced.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CyVerse Container Camp: Container Technology for Scientific Research
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Container Camp Workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/main.html"><strong>Workshop Code of Conduct</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html"><strong>Pre-Workshop Setup</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/agenda.html"><strong>Agenda</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/about_cyverse.html"><strong>About CyVerse</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Workshop Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_docker.html"><strong>Training session in Docker</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_singularity.html"><strong>Training session in Singularity</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_containerscaling.html"><strong>Training session in scaling up your analysis using containers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_biocontainers.html"><strong>Training session in Biocontainers</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Atmosphere</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../atmosphere/boot.html"><strong>Booting an Atmosphere computer instance for your use!</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docker/dockerintro.html"><strong>Introduction to Docker</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/dockeradvanced.html"><strong>Advanced Docker</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Singularity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../singularity/singularityintro.html"><strong>Introduction to Singularity</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity/singularityadvanced.html"><strong>Advanced Singularity</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Deploying</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Deploying apps in Discovery Environment</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-docker-images-as-apps-in-de">Deploying Docker images as apps in DE</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Container Scaling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_osg.html"><strong>OSG (Open Science Grid) Singularity Infrastructure</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_pegasus.html"><strong>Pegasus Workflows with Application Containers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_dc.html"><strong>Distributed Computing with Makeflow and Work Queue</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Biocontainers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biocontainer/biocontainers.html"><strong>Introduction to Biocontainers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biocontainer/biocontainers_hpc.html"><strong>Biocontainers in HPC</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Useful Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_docker.html"><strong>Docker related resources</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_singularity.html"><strong>Singularity related resources</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_other.html"><strong>Other resources</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Instructions and Reporting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../instructions_reporting/instructors.html"><strong>For instructors!</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions_reporting/problems.html"><strong>Problems? Bugs? Questions?</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CyVerse Container Camp: Container Technology for Scientific Research</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Deploying apps in Discovery Environment</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/deploying_apps/de_docker.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="deploying-apps-in-discovery-environment">
+<h1><strong>Deploying apps in Discovery Environment</strong><a class="headerlink" href="#deploying-apps-in-discovery-environment" title="Permalink to this headline">¶</a></h1>
+<p>The CyVerse Discovery Environment (DE) provides a simple yet powerful web portal for managing data, analyses, and workflows. The DE uses containers (via Docker and Singularity through Agave) to support customizable, non-interactive, reproducible workflows using data stored in the CyVerse Data Store, based on iRODS. Agave is a “Science-as-a-Service” API platform for high-performance computing (HPC), high-throughput computing (HTC) and big-data resources.</p>
+<div class="section" id="deploying-docker-images-as-apps-in-de">
+<h2>Deploying Docker images as apps in DE<a class="headerlink" href="#deploying-docker-images-as-apps-in-de" title="Permalink to this headline">¶</a></h2>
+<p>Instruction guide: This paper will guide you to bring your dockerized tools into CyVerse DE.</p>
+<p><a class="reference external" href="https://f1000research.com/articles/5-1442/v3">https://f1000research.com/articles/5-1442/v3</a></p>
+<p><a class="reference internal" href="../_images/f1000.png"><img alt="f1000" src="../_images/f1000.png" style="width: 700px; height: 400px;" /></a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Significant changes have been made as to how you can bring your tools into DE and so we are working on a separate paper that will show all those changes. Meanwhile you can follow the below tutorial for integrating your tools.</p>
+</div>
+<p>Here are the basic steps for deploying Docker images as apps in DE. For this tutorial I am going to show an example of Tensor image classifier docker image that I dockerized and pushed to dockerhub.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#build-and-test-your-docker-images">Build and test your Docker images</a></li>
+<li><a class="reference internal" href="#push-your-docker-image-to-public-repositories">Push your Docker image to public repositories</a></li>
+<li><a class="reference internal" href="#add-docker-images-as-tool-in-de">Add Docker images as tool in DE</a></li>
+<li><a class="reference internal" href="#create-a-ui-for-the-tool-in-de">Create a UI for the tool in DE</a></li>
+<li><a class="reference internal" href="#test-the-app-using-appropriate-test-data">Test the app using appropriate test data</a></li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you already have your own Docker image or Docker image of interest is hosted on public repositories (Dockerhub or quay.io or some other public repository), then you can skip to step 3</p>
+</div>
+<p id="build-and-test-your-docker-images"><strong>1. Build and test your Docker images</strong></p>
+<p>The first step is to dockerize your tool or software of interest. Detailed steps of how to dockerize your tool and test your dockerized images can be found in sections <a class="reference external" href="../docker/dockerintro.html">intro to docker</a> and <a class="reference external" href="../docker/dockeradvanced.html">advanced docker</a>.</p>
+<p>For this tutorial I will use the <code class="docutils literal notranslate"><span class="pre">tensorflow</span> <span class="pre">image</span> <span class="pre">classifier</span></code> docker image that I built using this <a class="reference external" href="https://github.com/upendrak/tensorflow_image_classifier">code</a></p>
+<p>Testing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/data -w /data tensorflow_up:1.0 sample_data/16401288243_36112bd52f_m.jpg
+</pre></div>
+</div>
+<p id="push-your-docker-image-to-public-repositories"><strong>2. Push your Docker image to public repositories</strong></p>
+<p>Once the Docker image works then you can push those images to some public repository such as <a class="reference external" href="http://hub.docker.com">dockerhub</a> or <a class="reference external" href="http://quay.io">quay.io</a></p>
+<p id="add-docker-images-as-tool-in-de">Here is the docker image for the tensorflow image classifier on docker hub - <a class="reference external" href="https://hub.docker.com/r/upendradevisetty/tensorflow_image_classifier/">https://hub.docker.com/r/upendradevisetty/tensorflow_image_classifier/</a></p>
+<p><strong>3. Add Docker images as tool in DE</strong></p>
+<p>All tools now run installed as Docker images in the DE. Once the software is dockerized and available as Docker images on dockerhub then you can add those docker images as a tool in DE.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Check if the tool and correct version are already installed in the DE by following the below steps.</p>
+<ul class="last simple">
+<li>Log in to the Discovery Environment by going to <a class="reference external" href="https://de.cyverse.org/de/">https://de.cyverse.org/de/</a>, entering your CyVerse username and password, and clicking LOGIN. If you have not already done so, you will need to sign up for a CyVerse account.</li>
+<li>Click the <code class="docutils literal notranslate"><span class="pre">Apps</span></code> window to open the Apps window.</li>
+<li>Click the <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">Tools</span></code> button on the top-right of the Apps window.</li>
+<li>In the search tools field, enter the first few letters of the tool name and then click enter.</li>
+<li>If the tool is available then you can skip to skip to step 3 for creating a UI for that tool.</li>
+</ul>
+</div>
+<p>If the tool is not available in DE then do the following:</p>
+<ul>
+<li><p class="first">Click open the <code class="docutils literal notranslate"><span class="pre">Tools</span></code> tab in <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">Tools</span></code> window and then click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">tools</span></code> button</p>
+</li>
+<li><p class="first">Then enter the fields about your tool and then click “Ok”.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Tool Name: It should be the name of the tool. For example “tensorflow_image_classifier”.</li>
+<li>Description: A short Description about the tool. For example “Tensorflow image classifier”.</li>
+<li>Version: What is the version number of the tool. For example “1.0”.</li>
+<li>Image name: Name of the Docker image on dockerhub or quay.io. For example “upendradevisetty/tensorflow_image_classifier”.</li>
+<li>Tag: What is the tag of your Docker image. This is optional but is highly recommended. If non specified, it will pull the default tag <code class="docutils literal notranslate"><span class="pre">latest</span></code>. If the <code class="docutils literal notranslate"><span class="pre">latest</span></code> tag is not avaiable the tool integration will fail. For example “1.0”</li>
+<li>Entrypoint: Do you want a entrypoint for your Docker image? This optional.</li>
+<li>Docker Hub URL: URL of the Dockerhub docker image. Option but is recommended. In this example “”.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><a class="reference internal" href="../_images/img_building_1.png"><img alt="img_building_1" src="../_images/img_building_1.png" style="width: 700px; height: 400px;" /></a></p>
+<ul class="simple">
+<li>If there is no error, it indicates successful integration of the tool.</li>
+</ul>
+<p id="create-a-ui-for-the-tool-in-de"><strong>4. Create a UI for the tool in DE</strong></p>
+<p>Once the Dockerized tool is added, you can create the app UI for the tool. The <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">App</span></code> window consists of four distinct sections:</p>
+<ul class="simple">
+<li>The first section contains the different app items that can be added to your interface. To add an app item, select the one to use (hover over the object name for a brief description) and drag it into position in the middle section.</li>
+<li>The second section is the landing place for the objects you dragged and dropped from the left section, and it updates to display how the app will look when presented to a user.</li>
+<li>The third section (Details) displays all of the available properties for the selected item. As you customize the app in this section, the middle section updates dynamically so you can see how it will look and act.</li>
+<li>Finally, the fourth section at the bottom (Command line view) contains the command-line commands for the current item’s properties. As you update the properties in the Details section, the command-line view updates as well to let you make sure that you are passing the correct arguments in the correct order.</li>
+</ul>
+<p><a class="reference internal" href="../_images/img_building_4.png"><img alt="img_building_4" src="../_images/img_building_4.png" style="width: 700px; height: 400px;" /></a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Creating a new app interface requires that you know how to use the tool. With that knowledge, you create the interface according to how you want options to be displayed to a user.</p>
+</div>
+<p>Here is an example of the <code class="docutils literal notranslate"><span class="pre">Tensorflow</span> <span class="pre">image</span> <span class="pre">classifier</span> <span class="pre">-</span> <span class="pre">1.0</span></code> app UI in DE</p>
+<p><a class="reference internal" href="../_images/img_building_3.png"><img alt="img_building_3" src="../_images/img_building_3.png" style="width: 700px; height: 400px;" /></a></p>
+<p id="test-the-app-using-appropriate-test-data"><strong>5. Test the app using appropriate test data</strong></p>
+<p>After creating the new app according to your design, test your app in the your Apps under development folder in the DE using appropriate test data to make sure it works properly.</p>
+<p>For testing, we’ll use the the same image that we have used earlier.</p>
+<p><a class="reference internal" href="../_images/img_building_9.png"><img alt="img_building_9" src="../_images/img_building_9.png" style="width: 300px; height: 200px;" /></a></p>
+<ol class="arabic simple">
+<li>First open the <code class="docutils literal notranslate"><span class="pre">Tensorflow</span> <span class="pre">image</span> <span class="pre">classifier</span> <span class="pre">-</span> <span class="pre">1.0</span></code> app in the app window</li>
+</ol>
+<p><a class="reference internal" href="../_images/img_building_5.png"><img alt="img_building_5" src="../_images/img_building_5.png" style="width: 700px; height: 400px;" /></a></p>
+<ol class="arabic simple" start="2">
+<li>Next browse the test file in the app and click launch analysis</li>
+</ol>
+<p><a class="reference internal" href="../_images/img_building_6.png"><img alt="img_building_6" src="../_images/img_building_6.png" style="width: 700px; height: 400px;" /></a></p>
+<ol class="arabic simple" start="3">
+<li>After the analysis is completed, open the folder and check to see if the image classifier correctly predicts</li>
+</ol>
+<p><a class="reference internal" href="../_images/img_building_8.png"><img alt="img_building_8" src="../_images/img_building_8.png" style="width: 700px; height: 400px;" /></a></p>
+<p>Congrats!!! It works. The image classifier correctly predicts that image is a daisy..</p>
+<ul class="simple">
+<li>If your app works the way you expect it to you can share your app or make the app public</li>
+<li>If your app doesn’t work, then you may need to make changes to the app UI or you need to make changes to your Docker image. If you make changes to the Docker image, then you don’t need to create a new app UI again as the Docker image updates will be propagated automatically.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../container_scaling/containerscaling_osg.html" class="btn btn-neutral float-right" title="OSG (Open Science Grid) Singularity Infrastructure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../singularity/singularityadvanced.html" class="btn btn-neutral" title="Advanced Singularity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, CyVerse.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/jquery.tablesorter.min.js"></script>
+      <script type="text/javascript" src="../_static/cyverse.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Starting JupyterLab App &mdash; Visual Interactive Computing Environment 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.tablesorter.min.js"></script>
+        <script type="text/javascript" src="../_static/cyverse.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cyverse.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Starting RStudio App" href="quick-rstudio.html" />
+    <link rel="prev" title="Applications" href="../getting_started/apptypes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Visual Interactive Computing Environment
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/about.html"><strong>About</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/prerequisites.html"><strong>Prerequisites</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/apptypes.html"><strong>Applications</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Starting JupyterLab App</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#search-jupyterlab-app">1. Search JupyterLab App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launch-analysis">2. Launch analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navigate-to-jupyterlab-url">3. Navigate to JupyterLab url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-jupyter-notebook">4. Create Jupyter notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#write-your-code">5. Write your code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-and-save-outputs">6. Complete and Save Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyter-lab-with-sql">7. Jupyter-lab with SQL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quick-rstudio.html"><strong>Starting RStudio App</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-rshiny.html"><strong>Starting Shiny App</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html"><strong>Sharing VICE apps with collaborators</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing.html#vice-share-7"></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/workflow.html"><strong>Workflow</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/adding.html"><strong>Guidelines for adding VICE tools in DE</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/building.html"><strong>Building VICE tools and apps</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">VICE Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vice_apps/examples.html">VICE Apps in DE</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Getting Help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/faq.html"><strong>Frequently Asked Questions</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/bestpractices.html"><strong>VICE Best practices</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/tool_troubleshooting.html"><strong>Tool Troubleshooting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_help/contact.html"><strong>Contact</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Visual Interactive Computing Environment</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Starting JupyterLab App</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/user_guide/quick-jupyter.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="http://learning.cyverse.org/"><img alt="CyVerse logo" src="../_images/cyverse_rgb4.png" style="width: 500px; height: 100px;" /></a></p>
+<p><a class="reference external" href="http://learning.cyverse.org/"><img alt="Home_Icon" src="../_images/homeicon4.png" style="width: 25px; height: 25px;" /></a>
+<a class="reference external" href="http://learning.cyverse.org/">Learning Center Home</a></p>
+<div class="section" id="starting-jupyterlab-app">
+<h1><strong>Starting JupyterLab App</strong><a class="headerlink" href="#starting-jupyterlab-app" title="Permalink to this headline">¶</a></h1>
+<p>First log-in <a class="reference external" href="https://de.cyverse.org/de/">CyVerse DE</a></p>
+<div class="section" id="search-jupyterlab-app">
+<h2>1. Search JupyterLab App<a class="headerlink" href="#search-jupyterlab-app" title="Permalink to this headline">¶</a></h2>
+<p>After you login to DE, open the Apps window and search the JupyterLab with key word <cite>Jupyter</cite> or <cite>JupyterLab</cite>.</p>
+<p><a class="reference internal" href="../_images/jupyter2-1.png"><img alt="jupyter2-1" src="../_images/jupyter2-1.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="launch-analysis">
+<h2>2. Launch analysis<a class="headerlink" href="#launch-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Launch the JupyterLab app by clicking <strong>launch analysis</strong>. Before you launch, you can either drag and drop or browse the files that you want to use with Jupyter-lab. There is currently no restriction of how many files and size of the files that can be launched along with JupyterLab app.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The input files and/or folders can be selected under the ‘Parameters’ tab.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have a working jupyter workbook, you can import it into the app using input files and/or folder.</p>
+</div>
+<p><a class="reference internal" href="../_images/jupyter2-2.png"><img alt="jupyter2-2" src="../_images/jupyter2-2.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="navigate-to-jupyterlab-url">
+<h2>3. Navigate to JupyterLab url<a class="headerlink" href="#navigate-to-jupyterlab-url" title="Permalink to this headline">¶</a></h2>
+<p>Unlike regular DE apps once the analysis starts running you will get an url. Click on your notifications, and then by clicking on the “Access your running Analysis here” url (check that it is the jupyter app) you will be redirect to a page with a welcome message.</p>
+<p><a class="reference internal" href="../_images/jupyter2-3.png"><img alt="jupyter2-3" src="../_images/jupyter2-3.png" style="width: 700px; height: 400px;" /></a></p>
+<p><a class="reference internal" href="../_images/jupyter2-4.png"><img alt="jupyter2-4" src="../_images/jupyter2-4.png" style="width: 700px; height: 400px;" /></a></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The app might take a little bit to get everything set up. In the meantime you will see the welcome page.
+You will be automatically redirected to the app from the welcome page after it finishes setting up.</p>
+</div>
+<p><strong>The JupyterLab Interface:</strong> JupyterLab provides flexible building blocks for interactive, exploratory computing. While JupyterLab has many features found in traditional integrated development environments (IDEs), it remains focused on interactive, exploratory computing. The JupyterLab interface consists of a main work area containing tabs of documents and activities, a collapsible left sidebar, and a menu bar. The left sidebar contains a file browser, the list of running kernels and terminals, the command palette, the notebook cell tools inspector, and the tabs list.</p>
+<p>More information about the JupyterLab can be found <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/interface.html">here</a>.</p>
+</div>
+<div class="section" id="create-jupyter-notebook">
+<h2>4. Create Jupyter notebook<a class="headerlink" href="#create-jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<p>Jupyter notebooks are documents that combine live runnable code with narrative text (Markdown), equations (LaTeX), images, interactive visualizations and other rich output. Jupyter notebooks (.ipynb files) are fully supported in JupyterLab.</p>
+<p>If you want to create a notebook, you can do so by clicking the <code class="docutils literal notranslate"><span class="pre">+</span></code> button in the file browser and then selecting a kernel in the new Launcher tab. Currently there are 3 different notebooks available - Python3, Julia and R. Click on <cite>Python 3</cite> under Notebook section in the JupyterLab Interface, which will open a new Jupyter Notebook. A new file is created with a default name. Rename a file by right-clicking on its name in the file browser and selecting “Rename” from the context menu.</p>
+<p>To know more about notebooks in JupyterLab click <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/notebook.html">here</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To open the classic Notebook from JupyterLab, select “Launch Classic Notebook” from the JupyterLab Help menu.</p>
+</div>
+<p><a class="reference internal" href="../_images/jupyter2-5.png"><img alt="jupyter2-5" src="../_images/jupyter2-5.png" style="width: 700px; height: 400px;" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are plenty other cool stuff that you can do in JupyterLab such as using <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/code_console.html">consoles</a>, using <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/terminal.html">terminal</a> and using <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/file_editor.html">text editor</a>.</p>
+</div>
+</div>
+<div class="section" id="write-your-code">
+<h2>5. Write your code<a class="headerlink" href="#write-your-code" title="Permalink to this headline">¶</a></h2>
+<p>Once you open a new notebook, you can start writing your code, put markdown text, generate plots, save plots etc.</p>
+<p><a class="reference internal" href="../_images/jupyter2-6.png"><img alt="jupyter2-6" src="../_images/jupyter2-6.png" style="width: 700px; height: 400px;" /></a></p>
+</div>
+<div class="section" id="complete-and-save-outputs">
+<h2>6. Complete and Save Outputs<a class="headerlink" href="#complete-and-save-outputs" title="Permalink to this headline">¶</a></h2>
+<p>After finishing your analysis, you can save outputs to data store by clicking the Analysis window, then select the VICE analysis that you are running and select <cite>Complete and Save Outputs</cite> under the “Analyses” button.</p>
+<p><a class="reference internal" href="../_images/jupyter2-7.png"><img alt="jupyter2-7" src="../_images/jupyter2-7.png" style="width: 700px; height: 400px;" /></a></p>
+<p>After you had done this, you can find the outputs that you generated (if any) using the same steps as before, but this time selecting ‘Go To Output Folder’.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently, VICE can run for 48 hrs beyond which the apps will be terminated. If you have opted for email notifications from DE, then you’ll get a notification 1 day before and 1 hour before the app gets terminated. If you want to extend the time, you need to login to <a class="reference external" href="http://cyverse.run">http://cyverse.run</a>, find your analysis and then click the hour glass which automatically extends the app run time to 3 more days.</p>
+</div>
+<p><strong>Fix or improve this documentation</strong></p>
+<ul class="simple">
+<li><p>On Github: <a class="reference external" href="https://github.com/CyVerse-learning-materials/sciapps_guide">Repo link</a></p></li>
+<li><p>Send feedback: <a class="reference external" href="mailto:Tutorials&#37;&#52;&#48;CyVerse&#46;org">Tutorials<span>&#64;</span>CyVerse<span>&#46;</span>org</a></p></li>
+</ul>
+</div>
+<div class="section" id="jupyter-lab-with-sql">
+<h2>7. Jupyter-lab with SQL<a class="headerlink" href="#jupyter-lab-with-sql" title="Permalink to this headline">¶</a></h2>
+<p>Now you can run SQL queries inside a Jupyter-lab notebook. Here is a quick launch</p>
+<a href="https://de.cyverse.org/de/?type=quick-launch&quick-launch-id=d6863512-2b9c-4365-8f8e-3c7cdcdda06f&app-id=238da900-c81f-11e9-a1b1-008cfa5ae621" target="_blank"><img src="https://de.cyverse.org/Powered-By-CyVerse-blue.svg"></a><hr class="docutils" />
+<p><a class="reference external" href="http://learning.cyverse.org/"><img alt="Home_Icon" src="../_images/homeicon4.png" style="width: 25px; height: 25px;" /></a>
+<a class="reference external" href="http://learning.cyverse.org/">Learning Center Home</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="quick-rstudio.html" class="btn btn-neutral float-right" title="Starting RStudio App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../getting_started/apptypes.html" class="btn btn-neutral float-left" title="Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, CyVerse
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

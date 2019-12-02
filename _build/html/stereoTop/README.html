@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>terra-ref-makeflow &mdash; StarTERRA 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.tablesorter.min.js"></script>
+        <script type="text/javascript" src="../_static/cyverse.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cyverse.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> StarTERRA
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">terra-ref-makeflow</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">StarTERRA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>terra-ref-makeflow</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/stereoTop/README.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="terra-ref-makeflow">
+<h1>terra-ref-makeflow<a class="headerlink" href="#terra-ref-makeflow" title="Permalink to this headline">¶</a></h1>
+<p>As of cctools 7.0.21, the support for the sub-workflow feature in JX is unclear, you need to pull the current master branch from cctools github repo and compile from source.</p>
+<p>If you are on atmosphere this image should have all the dependency to compile cctools from source</p>
+<p>https://atmo.cyverse.org/application/images/1762</p>
+<p>Or install the dependency yourself (Ubuntu 18.04 LTS)</p>
+<p>https://jxuzy.blogspot.com/2019/11/install-cctools-ubuntu-1804lts.html</p>
+<blockquote>
+<div>Note: you will also need docker runtime to run this workflow</div></blockquote>
+<ul class="simple">
+<li>Those commands will compile and install cctools to your home directory, <code class="docutils literal notranslate"><span class="pre">makeflow</span></code> will be at <code class="docutils literal notranslate"><span class="pre">$HOME/cctools/bin/makeflow</span></code>, which is the path that <code class="docutils literal notranslate"><span class="pre">entrypoint.sh</span></code> uses.</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git://github.com/cooperative-computing-lab/cctools.git cctools-github-src
+<span class="nb">cd</span> cctools-github-src
+./configure --prefix <span class="nv">$HOME</span>/cctools
+make
+make install
+</pre></div>
+</div>
+<ul class="simple">
+<li>Run the workflow, <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">0</span></code> for 0 retry attempts if failed</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> terra-ref-makeflow
+chmod <span class="m">755</span> entrypoint.sh
+./entrypoint.sh -r <span class="m">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Clean up output and logs</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./entrypoint.sh -c
+rm -f makeflow.jx.args.*
+</pre></div>
+</div>
+<ul class="simple">
+<li>Modify <code class="docutils literal notranslate"><span class="pre">main_env.jx</span></code> to run on other data sets</li>
+</ul>
+<p>Just append/change the full iRODS path in the <code class="docutils literal notranslate"><span class="pre">IRODS_DIR_PATH_LIST</span></code> array (path needs to be in double quotes)</p>
+<p>And append/change the UUID (part of the filename, e.g <code class="docutils literal notranslate"><span class="pre">5716a146-8d3d-4d80-99b9-6cbf95cfedfb_left.bin</span></code> has a UUID of <code class="docutils literal notranslate"><span class="pre">5716a146-8d3d-4d80-99b9-6cbf95cfedfb</span></code>) in the <code class="docutils literal notranslate"><span class="pre">UUID_LIST</span></code> array</p>
+<p><code class="docutils literal notranslate"><span class="pre">NUM_SET</span></code> is the number of data sets, basically the number of elements in the <code class="docutils literal notranslate"><span class="pre">IRODS_DIR_PATH_LIST</span></code> array</p>
+<blockquote>
+<div>Note: the elements in the <code class="docutils literal notranslate"><span class="pre">IRODS_DIR_PATH_LIST</span></code> array and <code class="docutils literal notranslate"><span class="pre">UUID_LIST</span></code> array needs to be 1-to-1 corresponded, meaning data file with <code class="docutils literal notranslate"><span class="pre">UUID</span></code> of 0th elements in <code class="docutils literal notranslate"><span class="pre">UUID_LIST</span></code> are stored at the path represented by the 0th element in the <code class="docutils literal notranslate"><span class="pre">IRODS_DIR_PATH_LIST</span></code> array</div></blockquote>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, CyVerse
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

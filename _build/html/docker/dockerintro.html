@@ -1,0 +1,930 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction to Docker &mdash; CyVerse Container Camp: Container Technology for Scientific Research 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cyverse.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced Docker" href="dockeradvanced.html" />
+    <link rel="prev" title="Booting an Atmosphere computer instance for your use!" href="../atmosphere/boot.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CyVerse Container Camp: Container Technology for Scientific Research
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Container Camp Workshop</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/main.html"><strong>Workshop Code of Conduct</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html"><strong>Pre-Workshop Setup</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/agenda.html"><strong>Agenda</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/about_cyverse.html"><strong>About CyVerse</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Workshop Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_docker.html"><strong>Training session in Docker</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_singularity.html"><strong>Training session in Singularity</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_containerscaling.html"><strong>Training session in scaling up your analysis using containers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/train_biocontainers.html"><strong>Training session in Biocontainers</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Atmosphere</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../atmosphere/boot.html"><strong>Booting an Atmosphere computer instance for your use!</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Docker</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Introduction to Docker</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">1. Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-installation">2. Docker Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#testing-docker-installation">2.1 Testing Docker installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-docker-containers-from-prebuilt-images">3. Running Docker containers from prebuilt images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-web-applications-with-docker">4. Deploying web applications with Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deploying-static-website">4.1 Deploying static website</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deploying-dynamic-website">4.2 Deploying dynamic website</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#docker-images">4.2.1 Docker images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#meet-our-flask-app">4.2.2 Meet our Flask app</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-5-10-mins-deploy-a-custom-docker-image">Exercise (5-10 mins): Deploy a custom Docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dockerfile-commands-summary">5. Dockerfile commands summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demo-s">6. Demo’s</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#portainer">6.1 Portainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation">6.1.1 Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#play-with-docker-pwd">6.2 Play-with-docker (PWD)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">6.2.1 Installation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dockeradvanced.html"><strong>Advanced Docker</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Singularity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../singularity/singularityintro.html"><strong>Introduction to Singularity</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity/singularityadvanced.html"><strong>Advanced Singularity</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Deploying</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deploying_apps/de_docker.html"><strong>Deploying apps in Discovery Environment</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Container Scaling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_osg.html"><strong>OSG (Open Science Grid) Singularity Infrastructure</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_pegasus.html"><strong>Pegasus Workflows with Application Containers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_scaling/containerscaling_dc.html"><strong>Distributed Computing with Makeflow and Work Queue</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Biocontainers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../biocontainer/biocontainers.html"><strong>Introduction to Biocontainers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biocontainer/biocontainers_hpc.html"><strong>Biocontainers in HPC</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Useful Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_docker.html"><strong>Docker related resources</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_singularity.html"><strong>Singularity related resources</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_resources/usefulresources_other.html"><strong>Other resources</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Instructions and Reporting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../instructions_reporting/instructors.html"><strong>For instructors!</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions_reporting/problems.html"><strong>Problems? Bugs? Questions?</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CyVerse Container Camp: Container Technology for Scientific Research</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Introduction to Docker</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/docker/dockerintro.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction-to-docker">
+<h1><strong>Introduction to Docker</strong><a class="headerlink" href="#introduction-to-docker" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../_images/docker.png"><img alt="docker" src="../_images/docker.png" style="width: 750px; height: 700px;" /></a></p>
+<div class="section" id="prerequisites">
+<h2>1. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>There are no specific skills needed for this tutorial beyond a basic comfort with the command line and using a text editor. Prior experience in developing web applications will be helpful but is not required.</p>
+</div>
+<div class="section" id="docker-installation">
+<h2>2. Docker Installation<a class="headerlink" href="#docker-installation" title="Permalink to this headline">¶</a></h2>
+<p>Getting all the tooling setup on your computer can be a daunting task, but not with Docker. Getting Docker up and running on your favorite OS (Mac/Windows/Linux) is very easy.</p>
+<p>The getting started guide on Docker has detailed instructions for setting up Docker on <a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">Mac</a>/<a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">Windows</a>/<a class="reference external" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Linux</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you’re using Docker for Windows make sure you have <a class="reference external" href="https://docs.docker.com/docker-for-windows/#shared-drives">shared your drive</a>.</p>
+<p>If you’re using an older version of Windows or MacOS you may need to use <a class="reference external" href="https://docs.docker.com/machine/overview/">Docker Machine</a> instead.</p>
+<p class="last">All commands work in either bash or Powershell on Windows.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Depending on how you’ve installed Docker on your system, you might see a <code class="docutils literal notranslate"><span class="pre">permission</span> <span class="pre">denied</span></code> error after running the above command. If you’re on Linux, you may need to prefix your Docker commands with sudo. Alternatively to run docker command without sudo, you need to add your user (who has root privileges) to docker group.
+For this run:</p>
+<p>Create the docker group:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo groupadd docker
+</pre></div>
+</div>
+<p>Add your user to the docker group:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo usermod -aG docker $USER
+</pre></div>
+</div>
+<p class="last">Log out and log back in so that your group membership is re-evaluated</p>
+</div>
+<div class="section" id="testing-docker-installation">
+<h3>2.1 Testing Docker installation<a class="headerlink" href="#testing-docker-installation" title="Permalink to this headline">¶</a></h3>
+<p>Once you are done installing Docker, test your Docker installation by running the following command to make sure you are using version 1.13 or higher:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker --version
+Docker version <span class="m">17</span>.09.0-ce, build afdb6d4
+</pre></div>
+</div>
+<p>When run without <code class="docutils literal notranslate"><span class="pre">--version</span></code> you should see a whole bunch of lines showing the different options available with <code class="docutils literal notranslate"><span class="pre">docker</span></code>. Alternatively you can test your installation by running the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run hello-world
+Unable to find image <span class="s1">&#39;hello-world:latest&#39;</span> locally
+latest: Pulling from library/hello-world
+03f4658f8b78: Pull <span class="nb">complete</span>
+a3ed95caeb02: Pull <span class="nb">complete</span>
+Digest: sha256:8be990ef2aeb16dbcb9271ddfe2610fa6658d13f6dfb8bc72074cc1ca36966a7
+Status: Downloaded newer image <span class="k">for</span> hello-world:latest
+
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ <span class="m">1</span>. The Docker client contacted the Docker daemon.
+ <span class="m">2</span>. The Docker daemon pulled the <span class="s2">&quot;hello-world&quot;</span> image from the Docker Hub.
+ <span class="m">3</span>. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ <span class="m">4</span>. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+.......
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="running-docker-containers-from-prebuilt-images">
+<h2>3. Running Docker containers from prebuilt images<a class="headerlink" href="#running-docker-containers-from-prebuilt-images" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have everything setup, it’s time to get our hands dirty. In this section, you are going to run a container from <a class="reference external" href="http://www.alpinelinux.org/">Alpine Linux</a> (a lightweight linux distribution) image on your system and get a taste of the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command.</p>
+<p>But wait, what exactly is a container and image?</p>
+<p><strong>Containers</strong> - Running instances of Docker images — containers run the actual applications. A container includes an application and all of its dependencies. It shares the kernel with other containers, and runs as an isolated process in user space on the host OS.</p>
+<p><strong>Images</strong> - The file system and configuration of our application which are used to create containers. To find out more about a Docker image, run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">inspect</span> <span class="pre">hello-world</span></code>. In the demo above, you could have used the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span></code> command to download the <code class="docutils literal notranslate"><span class="pre">hello-world</span></code> image. However when you executed the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">hello-world</span></code>, it also did a <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span></code> behind the scenes to download the <code class="docutils literal notranslate"><span class="pre">hello-world</span></code> image with <code class="docutils literal notranslate"><span class="pre">latest</span></code> tag (we will learn more about tags little later).</p>
+<p>Now that we know what a container and image is, let’s run the following command in our terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run alpine ls -l
+total <span class="m">52</span>
+drwxr-xr-x    <span class="m">2</span> root     root          <span class="m">4096</span> Dec <span class="m">26</span>  <span class="m">2016</span> bin
+drwxr-xr-x    <span class="m">5</span> root     root           <span class="m">340</span> Jan <span class="m">28</span> <span class="m">09</span>:52 dev
+drwxr-xr-x   <span class="m">14</span> root     root          <span class="m">4096</span> Jan <span class="m">28</span> <span class="m">09</span>:52 etc
+drwxr-xr-x    <span class="m">2</span> root     root          <span class="m">4096</span> Dec <span class="m">26</span>  <span class="m">2016</span> home
+drwxr-xr-x    <span class="m">5</span> root     root          <span class="m">4096</span> Dec <span class="m">26</span>  <span class="m">2016</span> lib
+drwxr-xr-x    <span class="m">5</span> root     root          <span class="m">4096</span> Dec <span class="m">26</span>  <span class="m">2016</span> media
+........
+</pre></div>
+</div>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">hello-world</span></code> command in the demo above, <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">alpine</span> <span class="pre">ls</span> <span class="pre">-l</span></code> command fetches the <code class="docutils literal notranslate"><span class="pre">alpine:latest</span></code> image from the Docker registry first, saves it in our system and then runs a container from that saved image.</p>
+<p>When you run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">alpine</span></code>, you provided a command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>, so Docker started the command specified and you saw the listing</p>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">images</span></code> command to see a list of all images on your system</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+alpine                  latest              c51f86c28340        <span class="m">4</span> weeks ago         <span class="m">1</span>.109 MB
+hello-world             latest              690ed74de00f        <span class="m">5</span> months ago        <span class="m">960</span> B
+</pre></div>
+</div>
+<p>Let’s try something more exciting.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run alpine <span class="nb">echo</span> <span class="s2">&quot;Hello world&quot;</span>
+Hello world
+</pre></div>
+</div>
+<p>OK, that’s some actual output. In this case, the Docker client dutifully ran the <code class="docutils literal notranslate"><span class="pre">echo</span></code> command in our <code class="docutils literal notranslate"><span class="pre">alpine</span></code> container and then exited it. If you’ve noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast!</p>
+<p>Try another command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run alpine sh
+</pre></div>
+</div>
+<p>Wait, nothing happened! Is that a bug? Well, no. These interactive shells will exit after running any scripted commands such as <code class="docutils literal notranslate"><span class="pre">sh</span></code>, unless they are run in an interactive terminal - so for this example to not exit, you need to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-it</span> <span class="pre">alpine</span> <span class="pre">sh</span></code>. You are now inside the container shell and you can try out a few commands like <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>, <code class="docutils literal notranslate"><span class="pre">uname</span> <span class="pre">-a</span></code> and others.</p>
+<p>Before doing that, now it’s time to see the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> command which shows you all containers that are currently running.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</pre></div>
+</div>
+<p>Since no containers are running, you see a blank line. Let’s try a more useful variant: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+36171a5da744        alpine              <span class="s2">&quot;/bin/sh&quot;</span>                <span class="m">5</span> minutes ago       Exited <span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="m">2</span> minutes ago                        fervent_newton
+a6a9d46d0b2f        alpine             <span class="s2">&quot;echo &#39;hello from alp&quot;</span>    <span class="m">6</span> minutes ago       Exited <span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="m">6</span> minutes ago                        lonely_kilby
+ff0a5c3750b9        alpine             <span class="s2">&quot;ls -l&quot;</span>                   <span class="m">8</span> minutes ago       Exited <span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="m">8</span> minutes ago                        elated_ramanujan
+c317d0a9e3d2        hello-world         <span class="s2">&quot;/hello&quot;</span>                 <span class="m">34</span> seconds ago      Exited <span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="m">12</span> minutes ago                       stupefied_mcclintock
+</pre></div>
+</div>
+<p>What you see above is a list of all containers that you ran. Notice that the STATUS column shows that these containers exited a few minutes ago.</p>
+<p>If you want to run scripted commands such as <code class="docutils literal notranslate"><span class="pre">sh</span></code>, they should be run in an interactive terminal. In addition, interactive terminal allows you to run more than one command in a container. Let’s try that now:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run -it alpine sh
+/ <span class="c1"># ls</span>
+bin    dev    etc    home   lib    media  mnt    proc   root   run    sbin   srv    sys    tmp    usr    var
+/ <span class="c1"># uname -a</span>
+Linux de4bbc3eeaec <span class="m">4</span>.9.49-moby <span class="c1">#1 SMP Wed Sep 27 23:17:17 UTC 2017 x86_64 Linux</span>
+</pre></div>
+</div>
+<p>Running the <code class="docutils literal notranslate"><span class="pre">run</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-it</span></code> flags attaches us to an interactive <code class="docutils literal notranslate"><span class="pre">tty</span></code> in the container. Now you can run as many commands in the container as you want. Take some time to run your favorite commands.</p>
+<p>Exit out of the container by giving the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/ <span class="c1"># exit</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you type <code class="docutils literal notranslate"><span class="pre">exit</span></code> your <strong>container</strong> will exit and is no longer active. To check that, try the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker ps -l
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                          PORTS                    NAMES
+de4bbc3eeaec        alpine                &quot;/bin/sh&quot;                3 minutes ago       Exited (0) About a minute ago                            pensive_leavitt
+</pre></div>
+</div>
+<p>If you want to keep the container active, then you can use keys <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+p,</span> <span class="pre">ctrl</span> <span class="pre">+q</span></code>. To make sure that it is not exited run the same <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code> command again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker ps -l
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS                    NAMES
+0db38ea51a48        alpine                &quot;sh&quot;                     3 minutes ago       Up 3 minutes                                            elastic_lewin
+</pre></div>
+</div>
+<p>Now if you want to get back into that container, then you can type <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">attach</span> <span class="pre">&lt;container</span> <span class="pre">id&gt;</span></code>. This way you can save your container:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker attach 0db38ea51a48
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="deploying-web-applications-with-docker">
+<h2>4. Deploying web applications with Docker<a class="headerlink" href="#deploying-web-applications-with-docker" title="Permalink to this headline">¶</a></h2>
+<p>Great! so you have now looked at <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>, played with a Docker containers and also got the hang of some terminology. Armed with all this knowledge, you are now ready to get to the real stuff — deploying web applications with Docker.</p>
+<div class="section" id="deploying-static-website">
+<h3>4.1 Deploying static website<a class="headerlink" href="#deploying-static-website" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start by taking baby-steps. First, we’ll use Docker to run a static website in a container. The website is based on an existing image and in the next section we will see how to build a new image and run a website in that container. We’ll pull a Docker image from Dockerhub, run the container, and see how easy it is to set up a web server.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Code for this section is in this repo in the <a class="reference external" href="https://github.com/docker/labs/tree/master/beginner/static-site">static-site directory</a></p>
+</div>
+<p>The image that you are going to use is a single-page website that was already created for this demo and is available on the Dockerhub as <a class="reference external" href="https:/hub.docker.com/community/images/dockersamples/static-site">dockersamples/static-site</a>. You can pull and run the image directly in one go using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> as follows.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run -d dockersamples/static-site
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">-d</span></code> flag enables detached mode, which detaches the running container from the terminal/shell and returns your prompt after the container starts.</p>
+</div>
+<p>So, what happens when you run this command?</p>
+<p>Since the image doesn’t exist on your Docker host (laptop/computer), the Docker daemon first fetches it from the registry and then runs it as a container.</p>
+<p>Now that the server is running, do you see the website? What port is it running on? And more importantly, how do you access the container directly from our host machine?</p>
+<p>Actually, you probably won’t be able to answer any of these questions yet! ☺ In this case, the client didn’t tell the Docker Engine to publish any of the ports, so you need to re-run the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command to add this instruction.</p>
+<p>Let’s re-run the command with some new flags to publish ports and pass your name to the container to customize the message displayed. We’ll use the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option again to run the container in detached mode.</p>
+<p>First, stop the container that you have just launched. In order to do this, we need the container ID.</p>
+<p>Since we ran the container in detached mode, we don’t have to launch another terminal to do this. Run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> to view the running containers.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker ps
+CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS               NAMES
+a7a0e504ca3e        dockersamples/static-site   <span class="s2">&quot;/bin/sh -c &#39;cd /usr/&quot;</span>   <span class="m">28</span> seconds ago      Up <span class="m">26</span> seconds       <span class="m">80</span>/tcp, <span class="m">443</span>/tcp     stupefied_mahavira
+</pre></div>
+</div>
+<p>Check out the CONTAINER ID column. You will need to use this CONTAINER ID value, a long sequence of characters, to identify the container you want to stop, and then to remove it. The example below provides the CONTAINER ID on our system; you should use the value that you see in your terminal.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker stop a7a0e504ca3e
+$ docker rm   a7a0e504ca3e
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A cool feature is that you do not need to specify the entire <strong>CONTAINER ID</strong>. You can just specify a few starting characters and if it is unique among all the containers that you have launched, the Docker client will intelligently pick it up.</p>
+</div>
+<p>Now, let’s launch a container in detached mode as shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run --name static-site -d -P dockersamples/static-site
+e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
+</pre></div>
+</div>
+<p>In the above command:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-d</span></code> will create a container with the process detached from our terminal</li>
+<li><code class="docutils literal notranslate"><span class="pre">-P</span></code> will publish all the exposed container ports to random ports on the Docker host</li>
+<li><code class="docutils literal notranslate"><span class="pre">--name</span></code> allows you to specify a container name</li>
+</ul>
+<p>Now you can see the ports by running the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">port</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker port static-site
+<span class="m">443</span>/tcp -&gt; <span class="m">0</span>.0.0.0:32770
+<span class="m">80</span>/tcp -&gt; <span class="m">0</span>.0.0.0:32773
+</pre></div>
+</div>
+<p>If you are running Docker for Mac, Docker for Windows, or Docker on Linux, open a web browser and go to port 80 on your host. The exact address will depend on how you’re running Docker</p>
+<ul class="simple">
+<li>Laptop or Native linux: <code class="docutils literal notranslate"><span class="pre">http://localhost:[YOUR_PORT_FOR</span> <span class="pre">80/tcp]</span></code>. On my system this is <code class="docutils literal notranslate"><span class="pre">http://localhost:32773</span></code>.</li>
+</ul>
+<p><a class="reference internal" href="../_images/static_site_docker.png"><img alt="static_site_docker" src="../_images/static_site_docker.png" style="width: 750px; height: 700px;" /></a></p>
+<ul class="simple">
+<li>Cloud server: If you are running the same set of commands on Atmosphere/Jetstream or on any other cloud service, you can open <code class="docutils literal notranslate"><span class="pre">ipaddress:[YOUR_PORT_FOR</span> <span class="pre">80/tcp]</span></code>. On my Atmosphere instance this is <code class="docutils literal notranslate"><span class="pre">http://128.196.142.26:32769/</span></code>. We will see more about deploying Docker containers on Atmosphere/Jetstream Cloud in the Advanced Docker session.</li>
+</ul>
+<p><a class="reference internal" href="../_images/static_site_docker1.png"><img alt="static_site_docker1" src="../_images/static_site_docker1.png" style="width: 750px; height: 700px;" /></a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">-P`</span> <span class="pre">`will</span> <span class="pre">publish</span> <span class="pre">all</span> <span class="pre">the</span> <span class="pre">exposed</span> <span class="pre">container</span> <span class="pre">ports</span> <span class="pre">to</span> <span class="pre">random</span> <span class="pre">ports</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">Docker</span> <span class="pre">host.</span> <span class="pre">However</span> <span class="pre">if</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">assign</span> <span class="pre">a</span> <span class="pre">fixed</span> <span class="pre">port</span> <span class="pre">then</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">use</span> <span class="pre">``-p</span></code> option. The format is <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">&lt;host</span> <span class="pre">port&gt;:&lt;container</span> <span class="pre">port&gt;</span></code>. For example:</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run --name static-site2 -d -p <span class="m">8088</span>:80 dockersamples/static-site
+</pre></div>
+</div>
+<p>If you are running Docker for Mac, Docker for Windows, or Docker on Linux, you can open <code class="docutils literal notranslate"><span class="pre">http://localhost:[YOUR_PORT_FOR</span> <span class="pre">80/tcp]</span></code>. For our example this is <code class="docutils literal notranslate"><span class="pre">http://localhost:8088</span></code>.</p>
+<p>If you are running Docker on Atmosphere/Jetstream or on any other cloud, you can open <code class="docutils literal notranslate"><span class="pre">ipaddress:[YOUR_PORT_FOR</span> <span class="pre">80/tcp]</span></code>. For our example this is <code class="docutils literal notranslate"><span class="pre">http://128.196.142.26:8088/</span></code></p>
+<p>If you see “Hello Docker!” then you’re done!</p>
+<p>Let’s stop and remove the containers since you won’t be using them anymore.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker stop static-site static-site2
+$ docker rm static-site static-site2
+</pre></div>
+</div>
+<p>Let’s use a shortcut to both stop and delete that container from your system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker rm -f static-site static-site2
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> to make sure the containers are gone.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</pre></div>
+</div>
+</div>
+<div class="section" id="deploying-dynamic-website">
+<h3>4.2 Deploying dynamic website<a class="headerlink" href="#deploying-dynamic-website" title="Permalink to this headline">¶</a></h3>
+<p>One area where Docker shines is when you need to use a command line utility that has a large number of dependencies.</p>
+<p>In this section, let’s dive deeper into what Docker images are. Later on we will build our own image and use that image to run an application locally (deploy a dynamic website).</p>
+<div class="section" id="docker-images">
+<h4>4.2.1 Docker images<a class="headerlink" href="#docker-images" title="Permalink to this headline">¶</a></h4>
+<p>Docker images are the basis of containers. In the previous example, you pulled the <code class="docutils literal notranslate"><span class="pre">dockersamples/static-site</span></code> image from the registry and asked the Docker client to run a container based on that image. To see the list of images that are available locally on your system, run the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">images</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker images
+REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
+dockersamples/static-site   latest              92a386b6e686        <span class="m">2</span> hours ago        <span class="m">190</span>.5 MB
+nginx                           latest              af4b3d7d5401        <span class="m">3</span> hours ago        <span class="m">190</span>.5 MB
+hello-world                     latest              690ed74de00f        <span class="m">5</span> months ago       <span class="m">960</span> B
+.........
+</pre></div>
+</div>
+<p>Above is a list of images that I’ve pulled from the registry and those I’ve created myself (we’ll shortly see how). You will have a different list of images on your machine. The <strong>TAG</strong> refers to a particular snapshot of the image and the <strong>ID</strong> is the corresponding unique identifier for that image.</p>
+<p>For simplicity, you can think of an image akin to a git repository - images can be committed with changes and have multiple versions. When you do not provide a specific version number, the client defaults to latest.</p>
+<p>For example you could pull a specific version of ubuntu image as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker pull ubuntu:16.04
+</pre></div>
+</div>
+<p>If you do not specify the version number of the image, as mentioned, the Docker client will default to a version named <code class="docutils literal notranslate"><span class="pre">latest</span></code>.</p>
+<p>So for example, the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span></code> command given below will pull an image named <code class="docutils literal notranslate"><span class="pre">ubuntu:latest</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker pull ubuntu
+</pre></div>
+</div>
+<p>To get a new Docker image you can either get it from a registry (such as the Docker hub) or create your own. There are hundreds of thousands of images available on Docker hub. You can also search for images directly from the command line using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">search</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker search ubuntu
+  NAME                                                   DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+  ubuntu                                                 Ubuntu is a Debian-based Linux operating sys…   <span class="m">7310</span>                <span class="o">[</span>OK<span class="o">]</span>
+  dorowu/ubuntu-desktop-lxde-vnc                         Ubuntu with openssh-server and NoVNC            <span class="m">163</span>                                     <span class="o">[</span>OK<span class="o">]</span>
+  rastasheep/ubuntu-sshd                                 Dockerized SSH service, built on top of offi…   <span class="m">131</span>                                     <span class="o">[</span>OK<span class="o">]</span>
+  ansible/ubuntu14.04-ansible                            Ubuntu <span class="m">14</span>.04 LTS with ansible                   <span class="m">90</span>                                      <span class="o">[</span>OK<span class="o">]</span>
+  ubuntu-upstart                                         Upstart is an event-based replacement <span class="k">for</span> th…   <span class="m">81</span>                  <span class="o">[</span>OK<span class="o">]</span>
+  neurodebian                                            NeuroDebian provides neuroscience research s…   <span class="m">43</span>                  <span class="o">[</span>OK<span class="o">]</span>
+  ubuntu-debootstrap                                     debootstrap --variant<span class="o">=</span>minbase --components<span class="o">=</span>m…   <span class="m">35</span>                  <span class="o">[</span>OK<span class="o">]</span>
+  1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5   ubuntu-16-nginx-php-phpmyadmin-mysql-5          <span class="m">26</span>                                      <span class="o">[</span>OK<span class="o">]</span>
+  nuagebec/ubuntu                                        Simple always updated Ubuntu docker images w…   <span class="m">22</span>                                      <span class="o">[</span>OK<span class="o">]</span>
+  tutum/ubuntu                                           Simple Ubuntu docker images with SSH access     <span class="m">18</span>
+  ppc64le/ubuntu                                         Ubuntu is a Debian-based Linux operating sys…   <span class="m">11</span>
+  i386/ubuntu                                            Ubuntu is a Debian-based Linux operating sys…   <span class="m">9</span>
+  1and1internet/ubuntu-16-apache-php-7.0                 ubuntu-16-apache-php-7.0                        <span class="m">7</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+  eclipse/ubuntu_jdk8                                    Ubuntu, JDK8, Maven <span class="m">3</span>, git, curl, nmap, mc, …   <span class="m">5</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+  darksheer/ubuntu                                       Base Ubuntu Image -- Updated hourly             <span class="m">3</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+  codenvy/ubuntu_jdk8                                    Ubuntu, JDK8, Maven <span class="m">3</span>, git, curl, nmap, mc, …   <span class="m">3</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+  1and1internet/ubuntu-16-nginx-php-5.6-wordpress-4      ubuntu-16-nginx-php-5.6-wordpress-4             <span class="m">2</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+  1and1internet/ubuntu-16-nginx                          ubuntu-16-nginx                                 <span class="m">2</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+  pivotaldata/ubuntu                                     A quick freshening-up of the base Ubuntu doc…   <span class="m">1</span>
+  smartentry/ubuntu                                      ubuntu with smartentry                          <span class="m">0</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+  pivotaldata/ubuntu-gpdb-dev                            Ubuntu images <span class="k">for</span> GPDB development              <span class="m">0</span>
+  1and1internet/ubuntu-16-healthcheck                    ubuntu-16-healthcheck                           <span class="m">0</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+  thatsamguy/ubuntu-build-image                          Docker webapp build images based on Ubuntu      <span class="m">0</span>
+  ossobv/ubuntu                                          Custom ubuntu image from scratch <span class="o">(</span>based on o…   <span class="m">0</span>
+  1and1internet/ubuntu-16-sshd                           ubuntu-16-sshd                                  <span class="m">0</span>                                       <span class="o">[</span>OK<span class="o">]</span>
+</pre></div>
+</div>
+<p>An important distinction with regard to images is between base images and child images and official images and user images (Both of which can be base images or child images.).</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p><strong>Base images</strong> are images that have no parent images, usually images with an OS like ubuntu, alpine or debian.</p>
+<p><strong>Child images</strong> are images that build on base images and add additional functionality.</p>
+<p><strong>Official images</strong> are Docker sanctioned images. Docker, Inc. sponsors a dedicated team that is responsible for reviewing and publishing all Official Repositories content. This team works in collaboration with upstream software maintainers, security experts, and the broader Docker community. These are not prefixed by an organization or user name. In the list of images above, the python, node, alpine and nginx images are official (base) images. To find out more about them, check out the Official Images Documentation.</p>
+<p class="last"><strong>User images</strong> are images created and shared by users like you. They build on base images and add additional functionality. Typically these are formatted as <code class="docutils literal notranslate"><span class="pre">user/image-name</span></code>. The user value in the image name is your Dockerhub user or organization name.</p>
+</div>
+</div>
+<div class="section" id="meet-our-flask-app">
+<h4>4.2.2 Meet our Flask app<a class="headerlink" href="#meet-our-flask-app" title="Permalink to this headline">¶</a></h4>
+<p>Now that you have a better understanding of images, it’s time to create an image that sandboxes a small <a class="reference external" href="http://flask.pocoo.org/">Flask</a> application. Flask is a lightweight Python web framework. We’ll do this by first pulling together the components for a random cat picture generator built with Python Flask, then dockerizing it by writing a Dockerfile and finally we’ll build the image and run it.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#create-a-python-flask-app-that-displays-random-cat">Create a Python Flask app that displays random cat</a></li>
+<li><a class="reference internal" href="#build-the-image">Build the image</a></li>
+<li><a class="reference internal" href="#run-your-image">Run your image</a></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I have already written the Flask app for you, so you should start by cloning the git repository at <a class="reference external" href="https://github.com/upendrak/flask-app">https://github.com/upendrak/flask-app</a>. You can do this with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> if you have git installed, or by clicking the “Download ZIP” button on GitHub</p>
+</div>
+<ol class="arabic simple" id="create-a-python-flask-app-that-displays-random-cat">
+<li>Create a Python Flask app that displays random cat</li>
+</ol>
+<p>For the purposes of this workshop, we’ve created a fun little Python Flask app that displays a random cat .gif every time it is loaded - because, you know, who doesn’t like cats?</p>
+<p>Start by creating a directory called <code class="docutils literal notranslate"><span class="pre">flask-app</span></code> where we’ll create the following files:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#app-py">app.py</a></li>
+<li><a class="reference internal" href="#requirements-txt">requirements.txt</a></li>
+<li><a class="reference internal" href="#templates-index-html">templates/index.html</a></li>
+<li><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir flask-app <span class="o">&amp;&amp;</span> <span class="nb">cd</span> flask-app
+</pre></div>
+</div>
+<p id="app-py">1.1 <strong>app.py</strong></p>
+<p>Create the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file with the following content. You can use any of favorite text editor to create this file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from flask import Flask, render_template
+import random
+
+<span class="nv">app</span> <span class="o">=</span> Flask<span class="o">(</span>__name__<span class="o">)</span>
+
+<span class="c1"># list of cat images</span>
+<span class="nv">images</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26388-1381844103-11.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr01/15/9/anigif_enhanced-buzz-31540-1381844535-8.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26390-1381844163-18.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-1376-1381846217-0.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3391-1381844336-26.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-29111-1381845968-0.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3409-1381844582-13.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr02/15/9/anigif_enhanced-buzz-19667-1381844937-10.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26358-1381845043-13.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-18774-1381844645-6.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-25158-1381844793-0.gif&quot;</span>,
+    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/10/anigif_enhanced-buzz-11980-1381846269-1.gif&quot;</span>
+<span class="o">]</span>
+
+@app.route<span class="o">(</span><span class="s1">&#39;/&#39;</span><span class="o">)</span>
+def index<span class="o">()</span>:
+    <span class="nv">url</span> <span class="o">=</span> random.choice<span class="o">(</span>images<span class="o">)</span>
+    <span class="k">return</span> render_template<span class="o">(</span><span class="s1">&#39;index.html&#39;</span>, <span class="nv">url</span><span class="o">=</span>url<span class="o">)</span>
+
+<span class="k">if</span> <span class="nv">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span>:
+    app.run<span class="o">(</span><span class="nv">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p id="requirements-txt">1.2. <strong>requirements.txt</strong></p>
+<p>In order to install the Python modules required for our app, we need to create a file called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and add the following line to that file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">Flask</span><span class="o">==</span><span class="m">0</span>.10.1
+</pre></div>
+</div>
+<p id="templates-index-html">1.3. <strong>templates/index.html</strong></p>
+<p>Create a directory called <cite>templates</cite> and create an <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file in that directory with the following content in it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir templates <span class="o">&amp;&amp;</span> <span class="nb">cd</span> templates
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;html&gt;
+  &lt;head&gt;
+    &lt;style <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span>&gt;
+      body <span class="o">{</span>
+        background: black<span class="p">;</span>
+        color: white<span class="p">;</span>
+      <span class="o">}</span>
+      div.container <span class="o">{</span>
+        max-width: 500px<span class="p">;</span>
+        margin: 100px auto<span class="p">;</span>
+        border: 20px solid white<span class="p">;</span>
+        padding: 10px<span class="p">;</span>
+        text-align: center<span class="p">;</span>
+      <span class="o">}</span>
+      h4 <span class="o">{</span>
+        text-transform: uppercase<span class="p">;</span>
+      <span class="o">}</span>
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;container&quot;</span>&gt;
+      &lt;h4&gt;Cat Gif of the day&lt;/h4&gt;
+      &lt;img <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;{{url}}&quot;</span> /&gt;
+      &lt;p&gt;&lt;small&gt;Courtesy: &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://www.buzzfeed.com/copyranter/the-best-cat-gif-post-in-the-history-of-cat-gifs&quot;</span>&gt;Buzzfeed&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you want, you can run this app through your laptop’s native Python installation first just to see what it looks like. Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> and then run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">app.py</span></code>.</p>
+<p>You should then be able to open a web browser, go to <a class="reference external" href="http://localhost:5000">http://localhost:5000</a>, and see the message “Hello! I am a Flask application”.</p>
+<p class="last">This is totally optional - but some people like to see what the app’s supposed to do before they try to Dockerize it.</p>
+</div>
+<p id="dockerfile">1.4. <strong>Dockerfile</strong></p>
+<p>A <strong>Dockerfile</strong> is a text file that contains a list of commands that the Docker daemon calls while creating an image. The Dockerfile contains all the information that Docker needs to know to run the app — a base Docker image to run from, location of your project code, any dependencies it has, and what commands to run at start-up. It is a simple way to automate the image creation process. The best part is that the commands you write in a Dockerfile are almost identical to their equivalent Linux commands. This means you don’t really have to learn new syntax to create your own Dockerfiles.</p>
+<p>We want to create a Docker image with this web app. As mentioned above, all user images are based on a base image. Since our application is written in Python, we will build our own Python image based on <code class="docutils literal notranslate"><span class="pre">Alpine</span></code>. We’ll do that using a Dockerfile.</p>
+<p>Create a file called Dockerfile in the <code class="docutils literal notranslate"><span class="pre">flask</span></code> directory, and add content to it as described below. Since you are currently in <code class="docutils literal notranslate"><span class="pre">templates</span></code> directory, you need to go up one directory up before you can create your Dockerfile</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ..
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># our base image</span>
+FROM alpine:3.5
+
+<span class="c1"># install python and pip</span>
+RUN apk add --update py2-pip
+
+<span class="c1"># install Python modules needed by the Python app</span>
+COPY requirements.txt /usr/src/app/
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+
+<span class="c1"># copy files required for the app to run</span>
+COPY app.py /usr/src/app/
+COPY templates/index.html /usr/src/app/templates/
+
+<span class="c1"># tell the port number the container should expose</span>
+EXPOSE <span class="m">5000</span>
+
+<span class="c1"># run the application</span>
+CMD <span class="o">[</span><span class="s2">&quot;python&quot;</span>, <span class="s2">&quot;/usr/src/app/app.py&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Now let’s see what each of those lines mean..</p>
+<p>1.4.1 We’ll start by specifying our base image, using the FROM keyword:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FROM alpine:3.5
+</pre></div>
+</div>
+<p>1.4.2. The next step usually is to write the commands of copying the files and installing the dependencies. But first we will install the Python pip package to the alpine linux distribution. This will not just install the pip package but any other dependencies too, which includes the python interpreter. Add the following <code class="docutils literal notranslate"><span class="pre">RUN</span></code> command next:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RUN apk add --update py2-pip
+</pre></div>
+</div>
+<p>1.4.3. Let’s add the files that make up the Flask Application. Install all Python requirements for our app to run. This will be accomplished by adding the lines:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>COPY requirements.txt /usr/src/app/
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+</pre></div>
+</div>
+<p>1.4.4. Copy the files you have created earlier into our image by using <code class="docutils literal notranslate"><span class="pre">COPY</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>COPY app.py /usr/src/app/
+COPY templates/index.html /usr/src/app/templates/
+</pre></div>
+</div>
+<p>1.4.5. Specify the port number which needs to be exposed. Since our flask app is running on 5000 that’s what we’ll expose.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>EXPOSE <span class="m">5000</span>
+</pre></div>
+</div>
+<p>1.4.6. The last step is the command for running the application which is simply - <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">./app.py</span></code>. Use the <code class="docutils literal notranslate"><span class="pre">CMD</span></code> command to do that:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CMD <span class="o">[</span><span class="s2">&quot;python&quot;</span>, <span class="s2">&quot;/usr/src/app/app.py&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>The primary purpose of <code class="docutils literal notranslate"><span class="pre">CMD</span></code> is to tell the container which command it should run by default when it is started.</p>
+<ol class="arabic simple" id="build-the-image" start="2">
+<li>Build the image</li>
+</ol>
+<p>Now that you have your Dockerfile, you can build your image. The <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> command does the heavy-lifting of creating a docker image from a Dockerfile.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">command</span></code> is quite simple - it takes an optional tag name with the <code class="docutils literal notranslate"><span class="pre">-t</span></code> flag, and the location of the directory containing the Dockerfile - the <code class="docutils literal notranslate"><span class="pre">.</span></code> indicates the current directory:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When you run the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> command given below, make sure to replace <code class="docutils literal notranslate"><span class="pre">&lt;YOUR_DOCKERHUB_USERNAME&gt;</span></code> with your username. This username should be the same one you created when registering on Docker hub. If you haven’t done that yet, please go ahead and create an account in <a class="reference external" href="https://hub.docker.com">Dockerhub</a>.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">YOUR_DOCKERHUB_USERNAME</span><span class="o">=</span>&lt;YOUR_DOCKERHUB_USERNAME&gt;
+</pre></div>
+</div>
+<p>For example this is how I assign my dockerhub username</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">YOUR_DOCKERHUB_USERNAME</span><span class="o">=</span>upendradevisetty
+</pre></div>
+</div>
+<p>Now build the image using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker build -t <span class="nv">$YOUR_DOCKERHUB_USERNAME</span>/myfirstapp .
+Sending build context to Docker daemon   <span class="m">7</span>.68kB
+Step <span class="m">1</span>/8 : FROM alpine:3.5
+ ---&gt; 88e169ea8f46
+Step <span class="m">2</span>/8 : RUN apk add --update py2-pip
+ ---&gt; Using cache
+ ---&gt; 8b1f026c3899
+Step <span class="m">3</span>/8 : COPY requirements.txt /usr/src/app/
+ ---&gt; Using cache
+ ---&gt; 6923f451ee09
+Step <span class="m">4</span>/8 : RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+ ---&gt; Running in fb6b7b8beb3c
+Collecting <span class="nv">Flask</span><span class="o">==</span><span class="m">0</span>.10.1 <span class="o">(</span>from -r /usr/src/app/requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+  Downloading Flask-0.10.1.tar.gz <span class="o">(</span>544kB<span class="o">)</span>
+Collecting Werkzeug&gt;<span class="o">=</span><span class="m">0</span>.7 <span class="o">(</span>from <span class="nv">Flask</span><span class="o">==</span><span class="m">0</span>.10.1-&gt;-r /usr/src/app/requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+  Downloading Werkzeug-0.14.1-py2.py3-none-any.whl <span class="o">(</span>322kB<span class="o">)</span>
+Collecting Jinja2&gt;<span class="o">=</span><span class="m">2</span>.4 <span class="o">(</span>from <span class="nv">Flask</span><span class="o">==</span><span class="m">0</span>.10.1-&gt;-r /usr/src/app/requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+  Downloading Jinja2-2.10-py2.py3-none-any.whl <span class="o">(</span>126kB<span class="o">)</span>
+Collecting itsdangerous&gt;<span class="o">=</span><span class="m">0</span>.21 <span class="o">(</span>from <span class="nv">Flask</span><span class="o">==</span><span class="m">0</span>.10.1-&gt;-r /usr/src/app/requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+  Downloading itsdangerous-0.24.tar.gz <span class="o">(</span>46kB<span class="o">)</span>
+Collecting MarkupSafe&gt;<span class="o">=</span><span class="m">0</span>.23 <span class="o">(</span>from Jinja2&gt;<span class="o">=</span><span class="m">2</span>.4-&gt;Flask<span class="o">==</span><span class="m">0</span>.10.1-&gt;-r /usr/src/app/requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+  Downloading MarkupSafe-1.0.tar.gz
+Installing collected packages: Werkzeug, MarkupSafe, Jinja2, itsdangerous, Flask
+  Running setup.py install <span class="k">for</span> MarkupSafe: started
+    Running setup.py install <span class="k">for</span> MarkupSafe: finished with status <span class="s1">&#39;done&#39;</span>
+  Running setup.py install <span class="k">for</span> itsdangerous: started
+    Running setup.py install <span class="k">for</span> itsdangerous: finished with status <span class="s1">&#39;done&#39;</span>
+  Running setup.py install <span class="k">for</span> Flask: started
+    Running setup.py install <span class="k">for</span> Flask: finished with status <span class="s1">&#39;done&#39;</span>
+Successfully installed Flask-0.10.1 Jinja2-2.10 MarkupSafe-1.0 Werkzeug-0.14.1 itsdangerous-0.24
+You are using pip version <span class="m">9</span>.0.0, however version <span class="m">9</span>.0.1 is available.
+You should consider upgrading via the <span class="s1">&#39;pip install --upgrade pip&#39;</span> command.
+ ---&gt; 16d47a8073fd
+Removing intermediate container fb6b7b8beb3c
+Step <span class="m">5</span>/8 : COPY app.py /usr/src/app/
+ ---&gt; 338019e5711f
+Step <span class="m">6</span>/8 : COPY templates/index.html /usr/src/app/templates/
+ ---&gt; b65ed769c446
+Step <span class="m">7</span>/8 : EXPOSE <span class="m">5000</span>
+ ---&gt; Running in b95001d36e4d
+ ---&gt; 0deaa29ca54a
+Removing intermediate container b95001d36e4d
+Step <span class="m">8</span>/8 : CMD python /usr/src/app/app.py
+ ---&gt; Running in 4a8e82f87e2f
+ ---&gt; 40a121fff878
+Removing intermediate container 4a8e82f87e2f
+Successfully built 40a121fff878
+Successfully tagged upendradevisetty/myfirstapp:latest
+</pre></div>
+</div>
+<p>If you don’t have the <code class="docutils literal notranslate"><span class="pre">alpine:3.5</span> <span class="pre">image</span></code>, the client will first pull the image and then create your image. Therefore, your output on running the command will look different from mine. If everything went well, your image should be ready! Run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">images</span></code> and see if your image <code class="docutils literal notranslate"><span class="pre">$YOUR_DOCKERHUB_USERNAME/myfirstapp</span></code> shows.</p>
+<ol class="arabic simple" id="run-your-image" start="3">
+<li>Run your image</li>
+</ol>
+<p>When Docker can successfully build your Dockerfile, test it by starting a new container from your new image using the docker run command. Don’t forget to include the port forwarding options you learned about before.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run -d -p <span class="m">8888</span>:5000 --name myfirstapp <span class="nv">$YOUR_DOCKERHUB_USERNAME</span>/myfirstapp
+</pre></div>
+</div>
+<p>Head over to <code class="docutils literal notranslate"><span class="pre">http://localhost:8888</span></code> and your app should be live.</p>
+<p><a class="reference internal" href="../_images/catpic-1.png"><img alt="catpic" src="../_images/catpic-1.png" style="width: 750px; height: 700px;" /></a></p>
+<p>Hit the Refresh button in the web browser to see a few more cat images.</p>
+</div>
+</div>
+<div class="section" id="exercise-5-10-mins-deploy-a-custom-docker-image">
+<h3>Exercise (5-10 mins): Deploy a custom Docker image<a class="headerlink" href="#exercise-5-10-mins-deploy-a-custom-docker-image" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Download the sample code from <a class="reference external" href="https://github.com/Azure-Samples/docker-django-webapp-linux.git">https://github.com/Azure-Samples/docker-django-webapp-linux.git</a></li>
+<li>Build the image using the Dockerfile in that repo using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> command</li>
+<li>Run an instance from that image</li>
+<li>Verify the web app and container are functioning correctly</li>
+<li>Share your (non-localhost) url on Slack</li>
+</ul>
+</div>
+</div>
+<div class="section" id="dockerfile-commands-summary">
+<h2>5. Dockerfile commands summary<a class="headerlink" href="#dockerfile-commands-summary" title="Permalink to this headline">¶</a></h2>
+<p>Here’s a quick summary of the few basic commands we used in our Dockerfile.</p>
+<ul class="simple">
+<li><strong>FROM</strong> starts the Dockerfile. It is a requirement that the Dockerfile must start with the FROM command. Images are created in layers, which means you can use another image as the base image for your own. The FROM command defines your base layer. As arguments, it takes the name of the image. Optionally, you can add the Dockerhub username of the maintainer and image version, in the format username/imagename:version.</li>
+<li><strong>RUN</strong> is used to build up the Image you’re creating. For each RUN command, Docker will run the command then create a new layer of the image. This way you can roll back your image to previous states easily. The syntax for a RUN instruction is to place the full text of the shell command after the RUN (e.g., RUN mkdir /user/local/foo). This will automatically run in a /bin/sh shell. You can define a different shell like this: RUN /bin/bash -c ‘mkdir /user/local/foo’</li>
+<li><strong>COPY</strong> copies local files into the container.</li>
+<li><strong>CMD</strong> defines the commands that will run on the Image at start-up. Unlike a RUN, this does not create a new layer for the Image, but simply runs the command. There can only be one CMD per a Dockerfile/Image. If you need to run multiple commands, the best way to do that is to have the CMD run a script. CMD requires that you tell it where to run the command, unlike RUN. So example CMD commands would be:</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CMD <span class="o">[</span><span class="s2">&quot;python&quot;</span>, <span class="s2">&quot;./app.py&quot;</span><span class="o">]</span>
+
+CMD <span class="o">[</span><span class="s2">&quot;/bin/bash&quot;</span>, <span class="s2">&quot;echo&quot;</span>, <span class="s2">&quot;Hello World&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>EXPOSE creates a hint for users of an image which ports provide services. It is included in the information which can be retrieved via <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">inspect</span> <span class="pre">&lt;container-id&gt;</span></code>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The EXPOSE command does not actually make any ports accessible to the host! Instead, this requires publishing ports by means of the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag when using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>.</p>
+</div>
+<ul class="simple">
+<li>PUSH pushes your image to Docker Cloud, or alternately to a private registry</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to learn more about Dockerfiles, check out <a class="reference external" href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">Best practices for writing Dockerfiles</a>.</p>
+</div>
+</div>
+<div class="section" id="demo-s">
+<h2>6. Demo’s<a class="headerlink" href="#demo-s" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="portainer">
+<h3>6.1 Portainer<a class="headerlink" href="#portainer" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://portainer.io/">Portainer</a> is an open-source lightweight managment UI which allows you to easily manage your Docker hosts or Swarm cluster.</p>
+<ul class="simple">
+<li>Simple to use: It has never been so easy to manage Docker. Portainer provides a detailed overview of Docker and allows you to manage containers, images, networks and volumes. It is also really easy to deploy, you are just one Docker command away from running Portainer anywhere.</li>
+<li>Made for Docker: Portainer is meant to be plugged on top of the Docker API. It has support for the latest versions of Docker, Docker Swarm and Swarm mode.</li>
+</ul>
+<div class="section" id="installation">
+<h4>6.1.1 Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h4>
+<p>Use the following Docker commands to deploy Portainer. Now the second line of command should be familiar to you by now. We will talk about first line of command in the Advanced Docker session.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker volume create portainer_data
+
+$ docker run -d -p <span class="m">9000</span>:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+</pre></div>
+</div>
+<ul class="simple">
+<li>If you are on mac, you’ll just need to access the port 9000 (<a class="reference external" href="http://localhost:9000">http://localhost:9000</a>) of the Docker engine where portainer is running using username <code class="docutils literal notranslate"><span class="pre">admin</span></code> and password <code class="docutils literal notranslate"><span class="pre">tryportainer</span></code></li>
+<li>If you are running Docker on Atmosphere/Jetstream or on any other cloud, you can open <code class="docutils literal notranslate"><span class="pre">ipaddress:9000</span></code>. For my case this is <code class="docutils literal notranslate"><span class="pre">http://128.196.142.26:9000</span></code></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <cite>-v /var/run/docker.sock:/var/run/docker.sock</cite> option can be used in mac/linux environments only.</p>
+</div>
+<p><a class="reference internal" href="../_images/portainer_demo.png"><img alt="portainer_demo" src="../_images/portainer_demo.png" style="width: 750px; height: 700px;" /></a></p>
+</div>
+</div>
+<div class="section" id="play-with-docker-pwd">
+<h3>6.2 Play-with-docker (PWD)<a class="headerlink" href="#play-with-docker-pwd" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.play-with-docker.com/">PWD</a> is a Docker playground which allows users to run Docker commands in a matter of seconds. It gives the experience of having a free Alpine Linux Virtual Machine in browser, where you can build and run Docker containers and even create clusters in <a class="reference external" href="https://docs.docker.com/engine/swarm/">Docker Swarm Mode</a>. Under the hood, Docker-in-Docker (DinD) is used to give the effect of multiple VMs/PCs. In addition to the playground, PWD also includes a training site composed of a large set of Docker labs and quizzes from beginner to advanced level available at <a class="reference external" href="http://training.play-with-docker.com/">training.play-with-docker.com</a>.</p>
+<div class="section" id="id2">
+<h4>6.2.1 Installation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>You don’t have to install anything to use PWD. Just open <code class="docutils literal notranslate"><span class="pre">https://labs.play-with-docker.com/</span></code> and start using PWD</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can use your Dockerhub credentials to log-in to PWD</p>
+</div>
+<p><a class="reference internal" href="../_images/pwd.png"><img alt="pwd" src="../_images/pwd.png" style="width: 750px; height: 700px;" /></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dockeradvanced.html" class="btn btn-neutral float-right" title="Advanced Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../atmosphere/boot.html" class="btn btn-neutral" title="Booting an Atmosphere computer instance for your use!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, CyVerse.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/jquery.tablesorter.min.js"></script>
+      <script type="text/javascript" src="../_static/cyverse.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
